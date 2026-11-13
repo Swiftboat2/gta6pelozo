@@ -23,3 +23,5 @@ Framework **Other**, sin build command, output directory = raíz. Conectar el pr
 
 ## Casos de prueba verificados
 Fran mar 24 18–20 → cuesta 0 · Fran mié 25 18–20 → 2 h · lun 23 10–12 → compartida · vie 20 03:00 → nadie · sáb 21 03:00 → compartida.
+
+Deploy: Vercel (Framework Other, sin build, output en la raíz).
