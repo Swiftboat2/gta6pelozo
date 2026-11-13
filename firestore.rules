@@ -1,0 +1,80 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() { return request.auth != null; }
+    function isPlayer(p) { return p == 'lauty' || p == 'fran'; }
+    function validRange(d, maxMs) {
+      return d.start is number && d.end is number && d.end > d.start && (d.end - d.start) <= maxMs;
+    }
+    function onlyChanges(keys) {
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly(keys);
+    }
+
+    match /bookings/{id} {
+      allow read: if signedIn();
+      allow create: if signedIn() && isPlayer(request.resource.data.player)
+                    && validRange(request.resource.data, 86400000);
+      // solo se puede cambiar el dueño (ceder un turno)
+      allow update: if signedIn() && onlyChanges(['player']) && isPlayer(request.resource.data.player);
+      allow delete: if signedIn();
+    }
+
+    match /sessions/{id} {
+      allow read: if signedIn();
+      allow create: if signedIn() && isPlayer(request.resource.data.player)
+                    && validRange(request.resource.data, 172800000)
+                    && request.resource.data.minutes is number && request.resource.data.minutes >= 0
+                    && request.resource.data.minutesShared is number && request.resource.data.minutesShared >= 0
+                    && request.resource.data.minutesExclusive is number && request.resource.data.minutesExclusive >= 0
+                    && request.resource.data.cost is number && request.resource.data.cost >= 0;
+      allow update: if false;
+      allow delete: if signedIn();
+    }
+
+    match /trades/{id} {
+      allow read: if signedIn();
+      allow create: if signedIn() && isPlayer(request.resource.data.from) && isPlayer(request.resource.data.to)
+                    && request.resource.data.from != request.resource.data.to
+                    && request.resource.data.createdBy in [request.resource.data.from, request.resource.data.to]
+                    && request.resource.data.minutes is number && request.resource.data.minutes > 0 && request.resource.data.minutes <= 6000
+                    && request.resource.data.note is string && request.resource.data.note.size() > 0 && request.resource.data.note.size() <= 200
+                    && request.resource.data.status == 'pending';
+      allow update: if signedIn() && resource.data.status == 'pending' && onlyChanges(['status', 'resolvedAt'])
+                    && request.resource.data.status in ['accepted', 'rejected'];
+      allow delete: if false;
+    }
+
+    match /claims/{id} {
+      allow read: if signedIn();
+      allow create: if signedIn() && request.resource.data.bookingId is string
+                    && isPlayer(request.resource.data.by) && isPlayer(request.resource.data.owner)
+                    && request.resource.data.by != request.resource.data.owner
+                    && request.resource.data.status == 'pending';
+      allow update: if signedIn() && resource.data.status == 'pending' && onlyChanges(['status'])
+                    && request.resource.data.status in ['ceded', 'rejected'];
+      allow delete: if false;
+    }
+
+    match /overrides/{id} {
+      allow read: if signedIn();
+      allow create: if signedIn() && isPlayer(request.resource.data.player)
+                    && request.resource.data.type in ['busy', 'free']
+                    && validRange(request.resource.data, 86400000);
+      allow update: if false;
+      allow delete: if signedIn();
+    }
+
+    match /meta/config {
+      allow read: if signedIn();
+      allow write: if signedIn() && request.resource.data.exclusiveFactor in [0, 25, 50, 100];
+    }
+
+    match /meta/live {
+      allow read: if signedIn();
+      allow write: if signedIn()
+                   && (request.resource.data.player == null
+                       || (isPlayer(request.resource.data.player) && request.resource.data.since is number));
+    }
+  }
+}

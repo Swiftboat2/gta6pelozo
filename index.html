@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#14022a">
+<title>Alcancía de Horas GTA 6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#14022a; --card:rgba(16,3,34,.80); --line:rgba(255,255,255,.14);
+  --text:#fdf3ff; --mut:#c9b3e6;
+  --cyan:#22e6ff; --pink:#ff3d9a; --orange:#ff8a3d; --yellow:#ffd23f; --red:#ff2d55; --green:#3dffb0;
+  --lauty:var(--cyan); --fran:var(--pink);
+  --disp:'Anton','Impact',sans-serif; --body:'Rajdhani','Segoe UI',system-ui,sans-serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-weight:600;font-size:17px;line-height:1.25;touch-action:manipulation;padding-bottom:84px}
+body::before{content:"";position:fixed;inset:0;z-index:-2;
+  background:linear-gradient(180deg,#14022a 0%,#2a0a52 34%,#8a1080 56%,#ff3d8b 72%,#ff8a3d 87%,#ffd23f 100%)}
+body::after{content:"";position:fixed;left:0;right:0;bottom:0;height:34vh;z-index:-1;pointer-events:none;opacity:.9;
+  background:
+   radial-gradient(circle at 50% 100%,#ffd23f 0 22vh,transparent 22.5vh),
+   url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 80' preserveAspectRatio='none'><path fill='%23120224' d='M0 80V52h18V38h14v14h10V30h16v22h12V44h14v36h8V24h18v28h12V40h16v40h10V34h14v18h12V46h18v34h8V28h16v24h12V42h14v38h10V36h16v16h12V48h18v32z'/></svg>") bottom/100% 22vh no-repeat}
+h1,h2,h3{font-family:var(--disp);font-weight:400;letter-spacing:.04em;text-transform:uppercase;margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+.wrap{max-width:560px;margin:0 auto;padding:12px 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin:12px 0;backdrop-filter:blur(6px)}
+.card h2{font-size:20px;margin-bottom:8px;color:var(--yellow);text-shadow:0 0 12px rgba(255,210,63,.4)}
+.row{display:flex;gap:8px;align-items:center}.row.sp{justify-content:space-between}.wrapx{flex-wrap:wrap}
+.mut{color:var(--mut);font-size:14px}
+.chip{display:inline-block;padding:2px 10px;border-radius:99px;font-family:var(--disp);letter-spacing:.05em;font-size:14px;border:1.5px solid currentColor}
+.chip.lauty,.c-lauty{color:var(--lauty)}.chip.fran,.c-fran{color:var(--fran)}
+.btn{border:0;border-radius:12px;padding:12px 16px;font-family:var(--disp);letter-spacing:.06em;font-size:18px;text-transform:uppercase;
+  background:linear-gradient(135deg,var(--orange),var(--pink));color:#fff;box-shadow:0 4px 18px rgba(255,61,154,.35)}
+.btn.sm{padding:7px 12px;font-size:15px}.btn.ghost{background:transparent;border:1.5px solid var(--line);box-shadow:none;color:var(--text)}
+.btn.cy{background:linear-gradient(135deg,#1aa6ff,var(--cyan));color:#06121f;box-shadow:0 4px 18px rgba(34,230,255,.35)}
+.btn.red{background:linear-gradient(135deg,#a3002a,var(--red))}
+.btn:disabled{opacity:.4}.btn.full{width:100%}
+input,select,textarea{font:inherit;color:var(--text);background:rgba(255,255,255,.08);border:1.5px solid var(--line);border-radius:10px;padding:10px;width:100%;color-scheme:dark}
+label{display:block;font-size:14px;color:var(--mut);margin:8px 0 3px}
+/* header */
+.top{position:sticky;top:0;z-index:20;background:rgba(20,2,42,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;padding:8px 16px}
+.logo{font-family:var(--disp);font-size:22px;letter-spacing:.06em;background:linear-gradient(90deg,var(--yellow),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo small{display:block;font-size:11px;letter-spacing:.2em;color:var(--mut);-webkit-text-fill-color:var(--mut)}
+.demo{background:var(--yellow);color:#201000;text-align:center;font-family:var(--disp);font-size:13px;letter-spacing:.1em;padding:2px}
+/* nav */
+nav{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(20,2,42,.94);border-top:1px solid var(--line);display:flex;padding-bottom:env(safe-area-inset-bottom)}
+nav button{flex:1;background:none;border:0;padding:12px 4px;font-family:var(--disp);letter-spacing:.06em;font-size:15px;color:var(--mut);position:relative}
+nav button.on{color:var(--yellow);text-shadow:0 0 10px rgba(255,210,63,.6)}
+nav .dot{position:absolute;top:6px;right:22%;background:var(--red);color:#fff;border-radius:99px;font-size:11px;min-width:18px;padding:0 4px}
+/* countdown */
+.cd{display:flex;gap:8px;justify-content:center;text-align:center}
+.cd div{min-width:64px}.cd b{display:block;font-family:var(--disp);font-weight:400;font-size:38px;line-height:1;color:var(--yellow);text-shadow:0 0 14px rgba(255,138,61,.8)}
+.cd span{font-size:12px;letter-spacing:.15em;color:var(--mut)}
+/* balances */
+.bals{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bal{border-radius:14px;padding:12px;border:2px solid currentColor;background:rgba(0,0,0,.35)}
+.bal.me{box-shadow:0 0 18px currentColor}
+.bal .n{font-family:var(--disp);letter-spacing:.06em;font-size:16px}
+.bal .v{font-family:var(--disp);font-size:34px;line-height:1.1;color:var(--text)}
+.bal .v.neg{color:var(--red)}
+.bal .s{font-size:13px;color:var(--mut)}
+.ps{text-align:center}
+.ps .big{font-family:var(--disp);font-size:30px;letter-spacing:.05em}
+.ps .timer{font-family:var(--disp);font-size:46px;color:var(--yellow)}
+.ps .live{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--red);animation:blink 1s infinite;margin-right:6px}
+@keyframes blink{50%{opacity:.2}}
+.item{border-top:1px solid var(--line);padding:10px 0}.item:first-of-type{border-top:0}
+/* days */
+.days{display:flex;gap:6px;overflow-x:auto;padding:4px 0 8px;scrollbar-width:none}
+.days button{flex:0 0 auto;min-width:54px;border:1.5px solid var(--line);background:rgba(0,0,0,.35);border-radius:10px;padding:5px 6px;text-align:center}
+.days button b{display:block;font-family:var(--disp);font-weight:400;font-size:19px}.days button span{font-size:11px;color:var(--mut)}
+.days button.on{border-color:var(--yellow);background:rgba(255,210,63,.18)}
+.legend{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--mut);margin:6px 0}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:4px}
+/* timeline */
+.tlh,.tl{display:grid;grid-template-columns:36px 1fr 1.35fr 1fr;gap:4px}
+.tlh div{font-family:var(--disp);font-size:13px;letter-spacing:.05em;text-align:center;padding:4px 0}
+.col{position:relative;height:1440px;border-radius:8px;background-color:rgba(255,255,255,.04);
+  background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 59px,rgba(255,255,255,.1) 59px,rgba(255,255,255,.1) 60px)}
+.gut{position:relative;height:1440px}.gut i{position:absolute;right:2px;font-style:normal;font-size:11px;color:var(--mut);transform:translateY(-6px)}
+.blk{position:absolute;left:2px;right:2px;border-radius:6px;font-size:11px;line-height:1.1;padding:2px 4px;overflow:hidden;border:1px solid rgba(255,255,255,.18);color:#fff}
+.blk.sleep{background:rgba(40,40,110,.85)}.blk.busy,.blk.class{background:rgba(90,60,120,.85)}
+.blk.ovbusy{background:rgba(120,30,60,.8);border:1.5px dashed #ff6b8b}.blk.ovfree{background:rgba(20,120,80,.55);border:1.5px dashed var(--green)}
+.col.lauty .blk{border-left:3px solid var(--lauty)}.col.fran .blk{border-left:3px solid var(--fran)}
+.blk.shared{background:linear-gradient(90deg,rgba(34,230,255,.5),rgba(255,61,154,.5));border:0;font-family:var(--disp);letter-spacing:.06em;opacity:.9}
+.blk.t-lauty{background:rgba(34,230,255,.38);border:0}.blk.t-fran{background:rgba(255,61,154,.38);border:0}
+.blk.none{background:repeating-linear-gradient(45deg,rgba(0,0,0,.6) 0 6px,rgba(40,20,60,.6) 6px 12px);border:0;color:var(--mut)}
+.blk.bk{left:22%;right:3px;background:rgba(10,0,25,.92);border-width:2px;z-index:2}
+.blk.bk.lauty{border-color:var(--lauty)}.blk.bk.fran{border-color:var(--fran)}
+.nowl{position:absolute;left:0;right:0;height:2px;background:var(--yellow);box-shadow:0 0 8px var(--yellow);z-index:5;pointer-events:none}
+/* keypad */
+.login{min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+.pad{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:340px;margin:16px auto}
+.pad button{aspect-ratio:1.25;border-radius:16px;border:2px solid rgba(255,255,255,.25);background:rgba(10,0,25,.7);font-family:var(--disp);font-size:36px}
+.pad button:active{background:var(--pink)}
+.dots{display:flex;gap:14px;justify-content:center;height:22px;margin:10px 0}
+.dots i{width:18px;height:18px;border-radius:50%;border:2px solid var(--yellow)}.dots i.f{background:var(--yellow);box-shadow:0 0 10px var(--yellow)}
+.shake{animation:shake .4s}@keyframes shake{25%{transform:translateX(-10px)}75%{transform:translateX(10px)}}
+/* modal / flash / toast */
+#modal{position:fixed;inset:0;z-index:60;display:none;background:rgba(5,0,15,.75);align-items:flex-end;justify-content:center}
+#modal.on{display:flex}
+.sheet{width:100%;max-width:560px;max-height:92vh;overflow:auto;background:#1c0638;border:1px solid var(--line);border-radius:20px 20px 0 0;padding:16px 16px calc(20px + env(safe-area-inset-bottom))}
+.est{margin-top:10px;padding:10px;border-radius:10px;background:rgba(255,255,255,.07);font-size:15px}
+.est b{color:var(--yellow)}
+#flash{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:20px}
+#flash.on{display:flex;animation:fin .25s}@keyframes fin{from{opacity:0}}
+#flash .t{font-family:var(--disp);font-size:clamp(44px,15vw,96px);letter-spacing:.06em;line-height:1}
+#flash .s{font-size:20px;margin-top:10px;max-width:420px}
+#flash.passed{background:rgba(10,0,25,.82)}#flash.passed .t{color:var(--yellow);text-shadow:0 0 30px var(--orange),0 4px 0 #a04400}
+#flash.wasted{background:rgba(0,0,0,.78);backdrop-filter:grayscale(1)}#flash.wasted .t{color:var(--red);text-shadow:0 0 30px #600,0 4px 0 #300;animation:pop .5s}
+@keyframes pop{from{transform:scale(1.8);opacity:0}}
+#toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%);z-index:80;background:#fff;color:#14022a;padding:10px 16px;border-radius:12px;font-weight:700;max-width:90vw;display:none;box-shadow:0 6px 24px rgba(0,0,0,.5)}
+#toast.on{display:block}
+.seg{display:flex;gap:6px}.seg button{flex:1;padding:9px;border-radius:10px;border:1.5px solid var(--line);background:rgba(255,255,255,.06);font-family:var(--disp);letter-spacing:.05em}
+.seg button.on{border-color:var(--yellow);background:rgba(255,210,63,.2);color:var(--yellow)}
+.tag{font-size:11px;padding:1px 6px;border-radius:6px;background:rgba(255,255,255,.15);margin-left:4px}
+details summary{cursor:pointer;color:var(--yellow);font-family:var(--disp);letter-spacing:.05em}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<nav id="nav" style="display:none"></nav>
+<div id="modal"></div>
+<div id="flash"></div>
+<div id="toast"></div>
+
+<!-- ============ PEGAR ACÁ EL firebaseConfig (si queda vacío → modo DEMO con localStorage) ============ -->
+<script>
+const firebaseConfig = {
+  apiKey: "",
+  authDomain: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: ""
+};
+</script>
+
+<script>
+(() => {
+'use strict';
+
+/* ===================== TIEMPO (America/Buenos_Aires = UTC-3 fijo) ===================== */
+const OFF = -3 * 3600000, MIN = 60000, SLOT = 15 * MIN, DAY = 86400000;
+const mk = (y, m, d, h = 0, mi = 0) => Date.UTC(y, m - 1, d, h, mi) - OFF;
+const LAUNCH = mk(2026, 11, 19, 0, 0);
+const dayStart = ts => Math.floor((ts + OFF) / DAY) * DAY - OFF;
+const floor15 = ts => Math.floor(ts / SLOT) * SLOT;
+const LD = ts => new Date(ts + OFF);
+const dkey = ts => LD(ts).toISOString().slice(0, 10);
+const dow = ts => LD(ts).getUTCDay();
+const minOfDay = ts => ((ts + OFF) % DAY) / MIN;
+const pad = n => String(n).padStart(2, '0');
+const hhmm = ts => pad(LD(ts).getUTCHours()) + ':' + pad(LD(ts).getUTCMinutes());
+const DOWN = ['DOM', 'LUN', 'MAR', 'MIÉ', 'JUE', 'VIE', 'SÁB'];
+const dLbl = ts => DOWN[dow(ts)] + ' ' + LD(ts).getUTCDate() + '/' + (LD(ts).getUTCMonth() + 1);
+const parseDT = (date, time) => { const [y, m, d] = date.split('-').map(Number), [h, mi] = time.split(':').map(Number); return mk(y, m, d, h, mi); };
+const fmtH = m => { const s = m < -0.5 ? '-' : ''; m = Math.round(Math.abs(m)); return s + Math.floor(m / 60) + 'h ' + pad(m % 60) + 'm'; };
+const r2 = n => Math.round(n * 100) / 100;
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+/* ===================== HASH (SHA-256 puro, no depende de https) ===================== */
+function sha256(ascii) {
+  const rr = (v, a) => (v >>> a) | (v << (32 - a)), mp = Math.pow, mw = mp(2, 32);
+  let result = ''; const words = [], abl = ascii.length * 8;
+  let hash = sha256.h = sha256.h || []; const k = sha256.k = sha256.k || []; let pc = k.length; const isC = {};
+  for (let c = 2; pc < 64; c++) if (!isC[c]) { for (let i = 0; i < 313; i += c) isC[i] = c; hash[pc] = (mp(c, .5) * mw) | 0; k[pc++] = (mp(c, 1 / 3) * mw) | 0; }
+  ascii += '\x80'; while (ascii.length % 64 - 56) ascii += '\x00';
+  for (let i = 0; i < ascii.length; i++) { const j = ascii.charCodeAt(i); if (j >> 8) return; words[i >> 2] |= j << ((3 - i) % 4) * 8; }
+  words[words.length] = ((abl / mw) | 0); words[words.length] = abl;
+  for (let j = 0; j < words.length;) {
+    const w = words.slice(j, j += 16), old = hash; hash = hash.slice(0, 8);
+    for (let i = 0; i < 64; i++) {
+      const w15 = w[i - 15], w2 = w[i - 2], a = hash[0], e = hash[4];
+      const t1 = hash[7] + (rr(e, 6) ^ rr(e, 11) ^ rr(e, 25)) + ((e & hash[5]) ^ (~e & hash[6])) + k[i] +
+        (w[i] = (i < 16) ? w[i] : (w[i - 16] + (rr(w15, 7) ^ rr(w15, 18) ^ (w15 >>> 3)) + w[i - 7] + (rr(w2, 17) ^ rr(w2, 19) ^ (w2 >>> 10))) | 0);
+      const t2 = (rr(a, 2) ^ rr(a, 13) ^ rr(a, 22)) + ((a & hash[1]) ^ (a & hash[2]) ^ (hash[1] & hash[2]));
+      hash = [(t1 + t2) | 0].concat(hash); hash[4] = (hash[4] + t1) | 0;
+    }
+    for (let i = 0; i < 8; i++) hash[i] = (hash[i] + old[i]) | 0;
+  }
+  for (let i = 0; i < 8; i++) for (let j = 3; j + 1; j--) { const b = (hash[i] >> (j * 8)) & 255; result += ((b < 16) ? 0 : '') + b.toString(16); }
+  return result;
+}
+
+/* ===================== JUGADORES ===================== */
+const SALT = 'gta6-alcancia:';
+const PLAYERS = {
+  lauty: { id: 'lauty', name: 'LAUTY', full: 'Lautaro', hash: '381d32b2014f3df814b76d932edb991e6cdcfed0a028fe247ed26b88b932332c' },
+  fran:  { id: 'fran',  name: 'FRAN',  full: 'Francisco', hash: 'b9dce5b9467f3b585529257e6170f952eb85e715b12925342561938a6f46dc0e' }
+};
+const other = p => p === 'lauty' ? 'fran' : 'lauty';
+const pchip = p => `<span class="chip ${p}">${PLAYERS[p]?.name || '?'}</span>`;
+
+/* ===================== HORARIOS ===================== */
+const HOLIDAYS = ['2026-11-23'];
+const LAUTY_BUSY_UNTIL = '2026-11-24';
+const FRAN_SKIP = ['2026-11-19'];            // jue 19/11 no hay profe particular
+const hm = (h, m = 0) => h * 60 + m;
+const FRAN_WEEK = {
+  1: [[hm(14, 30), hm(16, 30), 'Gimnasia + gym'], [hm(19, 30), hm(21, 30), 'Inglés']],
+  2: [[hm(17), hm(18), 'Profe particular']],
+  3: [[hm(14), hm(16), 'Gimnasia + gym'], [hm(19, 30), hm(21, 30), 'Inglés']],
+  4: [[hm(17), hm(18), 'Profe particular']],
+  5: [[hm(15), hm(16, 30), 'Gimnasio']]
+};
+function baseBusy(p, ts) {
+  const k = dkey(ts), d = dow(ts), m = minOfDay(ts), hol = HOLIDAYS.includes(k), wk = d >= 1 && d <= 5;
+  if (wk && !hol) {
+    if (m >= hm(2) && m < hm(7)) return { kind: 'sleep', label: 'Durmiendo' };
+    if (m >= hm(7) && m < hm(12)) return { kind: 'busy', label: 'Ocupado (mañana)' };
+  }
+  if (p === 'lauty') {
+    if (k <= LAUTY_BUSY_UNTIL && m >= hm(17) && m < hm(22)) return { kind: 'busy', label: 'Ocupado' };
+  } else if (!hol && !FRAN_SKIP.includes(k)) {
+    for (const [a, b, label] of (FRAN_WEEK[d] || [])) if (m >= a && m < b) return { kind: 'class', label };
+  }
+  return null;
+}
+
+/* ===================== ESTADO ===================== */
+const S = { me: null, tab: 'home', day: null, pin: '', ready: false, filter: 'all', trKind: 'give', scrolled: false,
+  bookings: [], sessions: [], trades: [], claims: [], overrides: [], config: null, live: null };
+const factor = () => { const f = S.config && S.config.exclusiveFactor; return (typeof f === 'number' ? f : 0) / 100; };
+
+function slotInfo(p, ts, ovs = S.overrides) {
+  let ov = null;
+  for (const o of ovs) if (o.player === p && ts >= o.start && ts < o.end && (!ov || (o.createdAt || 0) >= (ov.createdAt || 0))) ov = o;
+  if (ov) return ov.type === 'busy' ? { free: false, kind: 'ovbusy', label: 'No estoy (manual)' } : { free: true, kind: 'ovfree', label: 'Libre (manual)' };
+  const b = baseBusy(p, ts);
+  return b ? { free: false, ...b } : { free: true, kind: null, label: '' };
+}
+// 'shared' | 'lauty' (exclusiva de Lauty) | 'fran' | 'none'
+function slotType(ts, ovs = S.overrides) {
+  const l = slotInfo('lauty', ts, ovs).free, f = slotInfo('fran', ts, ovs).free;
+  return l && f ? 'shared' : l ? 'lauty' : f ? 'fran' : 'none';
+}
+function analyze(p, start, end, fx = factor()) {
+  let sh = 0, ex = 0, ot = 0, cost = 0;
+  for (let t = floor15(start); t < end; t += SLOT) {
+    const ov = (Math.min(end, t + SLOT) - Math.max(start, t)) / MIN; if (ov <= 0) continue;
+    const ty = slotType(t); let w = 1;
+    if (ty === 'shared') sh += ov; else if (ty === p) { ex += ov; w = fx; } else ot += ov;
+    if (t + SLOT <= LAUNCH) w = 0;   // antes del lanzamiento todavía no hay alcancía: juega gratis
+    cost += ov * w;
+  }
+  const minutes = (end - start) / MIN;
+  return { minutes: r2(minutes), minutesShared: r2(sh), minutesExclusive: r2(ex), cost: r2(cost) };
+}
+const sharedMinutes = ds => { let n = 0; for (let t = ds; t < ds + DAY; t += SLOT) if (slotType(t) === 'shared') n += 15; return n; };
+
+function balances(now = Date.now()) {
+  const r = { lauty: { dep: 0, spent: 0, tr: 0, run: 0 }, fran: { dep: 0, spent: 0, tr: 0, run: 0 } };
+  for (let ds = LAUNCH; ds <= dayStart(now); ds += DAY) { const h = sharedMinutes(ds) / 2; r.lauty.dep += h; r.fran.dep += h; }
+  S.sessions.forEach(s => { if (r[s.player]) r[s.player].spent += s.cost || 0; });
+  S.trades.filter(t => t.status === 'accepted').forEach(t => { if (r[t.from] && r[t.to]) { r[t.from].tr -= t.minutes; r[t.to].tr += t.minutes; } });
+  if (S.live && S.live.player) r[S.live.player].run = analyze(S.live.player, S.live.since, now).cost;
+  for (const p in r) r[p].total = r[p].dep - r[p].spent + r[p].tr - r[p].run;
+  return r;
+}
+function weekShared(p, ts) {
+  const ws = dayStart(ts) - ((dow(ts) + 6) % 7) * DAY;
+  return S.sessions.filter(s => s.player === p && s.start >= ws && s.start < ws + 7 * DAY).reduce((a, s) => a + (s.minutesShared || 0), 0);
+}
+function priority(ts = Date.now()) {
+  const l = weekShared('lauty', ts), f = weekShared('fran', ts);
+  return { lauty: l, fran: f, winner: l === f ? null : l < f ? 'lauty' : 'fran' };
+}
+const TYPE_LBL = { shared: 'COMPARTIDA', lauty: 'EXCLUSIVA LAUTY', fran: 'EXCLUSIVA FRAN', none: 'NADIE' };
+
+/* ===================== STORE (Firebase o demo localStorage) ===================== */
+const DEMO = !firebaseConfig.apiKey;
+const COLS = ['bookings', 'sessions', 'trades', 'claims', 'overrides'];
+let store;
+function demoStore() {
+  const KEY = 'gta6.demo.v1', ls = new Set();
+  let d = { bookings: [], sessions: [], trades: [], claims: [], overrides: [], config: null, live: null };
+  const load = () => { try { Object.assign(d, JSON.parse(localStorage.getItem(KEY) || '{}')); } catch (e) { } };
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(d)); } catch (e) { } };
+  const emit = () => ls.forEach(f => f());
+  load(); window.addEventListener('storage', e => { if (e.key === KEY) { load(); emit(); } });
+  const id = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
+  return {
+    async init() { },
+    watch(name, cb) { const f = () => cb(COLS.includes(name) ? d[name].slice() : d[name]); ls.add(f); setTimeout(f, 0); },
+    async add(c, o) { d[c].push({ id: id(), ...o }); save(); emit(); },
+    async upd(c, i, p) { const x = d[c].find(z => z.id === i); if (x) Object.assign(x, p); save(); emit(); },
+    async del(c, i) { d[c] = d[c].filter(z => z.id !== i); save(); emit(); },
+    async setMeta(n, o) { d[n] = o; save(); emit(); }
+  };
+}
+function fbStore() {
+  const V = '10.12.2', base = `https://www.gstatic.com/firebasejs/${V}/`;
+  const load = src => new Promise((res, rej) => { const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = () => rej(new Error('No cargó ' + src)); document.head.appendChild(s); });
+  let db;
+  return {
+    async init() {
+      await load(base + 'firebase-app-compat.js'); await load(base + 'firebase-auth-compat.js'); await load(base + 'firebase-firestore-compat.js');
+      firebase.initializeApp(firebaseConfig); await firebase.auth().signInAnonymously(); db = firebase.firestore();
+    },
+    watch(name, cb) {
+      const err = e => toast('Error Firebase: ' + e.message);
+      if (COLS.includes(name)) db.collection(name).onSnapshot(s => cb(s.docs.map(x => ({ id: x.id, ...x.data() }))), err);
+      else db.doc('meta/' + name).onSnapshot(x => cb(x.exists ? x.data() : null), err);
+    },
+    add: (c, o) => db.collection(c).add(o),
+    upd: (c, i, p) => db.collection(c).doc(i).update(p),
+    del: (c, i) => db.collection(c).doc(i).delete(),
+    setMeta: (n, o) => db.doc('meta/' + n).set(o)
+  };
+}
+const act = async (fn, okMsg) => { try { await fn(); if (okMsg) toast(okMsg); return true; } catch (e) { toast('Error: ' + (e.message || e)); return false; } };
+
+/* ===================== UI HELPERS ===================== */
+const $ = s => document.querySelector(s);
+let toastT, flashT;
+function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), 2800); }
+function flash(kind, sub) {
+  const f = $('#flash'); f.className = 'on ' + kind;
+  f.innerHTML = `<div class="t">${kind === 'passed' ? 'MISSION<br>PASSED' : 'WASTED'}</div><div class="s">${esc(sub || '')}</div>`;
+  clearTimeout(flashT); flashT = setTimeout(() => f.className = '', 2600); f.onclick = () => f.className = '';
+}
+function modal(html) { const m = $('#modal'); m.innerHTML = `<div class="sheet">${html}</div>`; m.classList.add('on'); }
+function closeModal() { $('#modal').classList.remove('on'); $('#modal').innerHTML = ''; if (window.GTA) render(); }
+const val = id => { const e = document.getElementById(id); return e ? e.value : ''; };
+
+/* ===================== VISTAS ===================== */
+function cdHTML() {
+  const ms = LAUNCH - Date.now();
+  if (ms <= 0) return `<div class="ps"><div class="big c-fran">¡YA SALIÓ GTA 6!</div></div>`;
+  const s = Math.floor(ms / 1000), d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60), x = s % 60;
+  return `<div class="cd"><div><b>${d}</b><span>DÍAS</span></div><div><b>${pad(h)}</b><span>HS</span></div><div><b>${pad(m)}</b><span>MIN</span></div><div><b>${pad(x)}</b><span>SEG</span></div></div>`;
+}
+function vLogin() {
+  return `<div class="wrap login">
+    <div style="text-align:center"><div class="logo" style="font-size:40px">ALCANCÍA DE HORAS<small>GTA 6 · LA PLAY DE LOS HERMANOS</small></div></div>
+    <div class="card" id="cdl" style="margin-top:18px"><h2 style="text-align:center">Faltan para el lanzamiento</h2><div id="cd">${cdHTML()}</div><div class="mut" style="text-align:center;margin-top:6px">Jueves 19/11/2026 · 00:00 (Buenos Aires)</div></div>
+    <div class="dots" id="dots">${'<i></i>'.repeat(4)}</div>
+    <div class="mut" style="text-align:center">Ingresá tu PIN</div>
+    <div class="pad">${[1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => `<button data-act="key" data-k="${n}">${n}</button>`).join('')}<button data-act="key" data-k="c" style="font-size:22px">BORRAR</button><button data-act="key" data-k="0">0</button><button data-act="key" data-k="x" style="font-size:22px;visibility:hidden">·</button></div>
+    ${DEMO ? '<div class="mut" style="text-align:center">Modo demo (sin Firebase): datos solo en este navegador</div>' : ''}</div>`;
+}
+function balCard(p, b, me) {
+  const x = b[p], neg = x.total < -0.5;
+  return `<div class="bal c-${p} ${me ? 'me' : ''}"><div class="n">${PLAYERS[p].name}${me ? ' · VOS' : ''}</div>
+    <div class="v ${neg ? 'neg' : ''}" data-bal="${p}">${fmtH(x.total)}</div>
+    <div class="s">+${fmtH(x.dep)} dep · −${fmtH(x.spent)} jugado${Math.abs(x.tr) > .5 ? ` · ${x.tr > 0 ? '+' : '−'}${fmtH(Math.abs(x.tr))} trades` : ''}</div></div>`;
+}
+function vHome() {
+  const me = S.me, b = balances(), now = Date.now(), live = S.live && S.live.player ? S.live : null, ty = slotType(now);
+  const myRate = ty === 'shared' ? '100%' : ty === me ? Math.round(factor() * 100) + '%' : '100%';
+  const pr = priority(now);
+  const pendT = S.trades.filter(t => t.status === 'pending' && t.createdBy !== me && (t.from === me || t.to === me));
+  const pendC = S.claims.filter(c => c.status === 'pending' && c.owner === me && S.bookings.some(x => x.id === c.bookingId));
+  const mineC = S.claims.filter(c => c.by === me && c.status === 'pending');
+  const next = S.bookings.filter(x => x.end > now).sort((a, c) => a.start - c.start).slice(0, 8);
+  return `
+  <div class="card"><h2>Cuenta regresiva</h2><div id="cd">${cdHTML()}</div></div>
+  <div class="card"><h2>Saldo de horas</h2><div class="bals">${balCard('lauty', b, me === 'lauty')}${balCard('fran', b, me === 'fran')}</div>
+    ${now < LAUNCH ? '<div class="mut" style="margin-top:8px">Los depósitos arrancan el jueves 19/11 a las 00:00. Hasta entonces jugar es gratis.</div>' : '<div class="mut" style="margin-top:8px">Cada día se deposita a cada uno la mitad de las horas compartidas.</div>'}</div>
+  <div class="card ps"><h2>Estado de la PS5</h2>
+    ${live ? `<div class="big c-${live.player}"><span class="live"></span>${PLAYERS[live.player].name} JUGANDO</div><div class="timer" id="timer">${fmtT(now - live.since)}</div>
+       ${live.player === me ? `<button class="btn red full" data-act="end">Terminar</button>` : `<div class="mut">Esperá a que termine ${PLAYERS[live.player].name}</div>`}`
+    : `<div class="big c-fran" style="color:var(--green)">LIBRE</div>
+       <div class="mut" style="margin:6px 0 10px">Ahora: franja <b>${TYPE_LBL[ty]}</b> · a vos te cuesta ${myRate}</div>
+       <button class="btn cy full" data-act="start">Arrancar</button>`}
+  </div>
+  <div class="card"><h2>Pendientes por responder ${pendT.length + pendC.length ? `(${pendT.length + pendC.length})` : ''}</h2>
+    ${pendC.map(c => { const bk = S.bookings.find(x => x.id === c.bookingId); return `<div class="item"><div>${pchip(c.by)} reclama tu turno <b>${dLbl(bk.start)} ${hhmm(bk.start)}–${hhmm(bk.end)}</b></div>
+      <div class="mut">Prioridad esta semana: ${pr.winner ? PLAYERS[pr.winner].name + ' (jugó menos compartidas)' : 'empate'}</div>
+      <div class="row" style="margin-top:6px"><button class="btn sm" data-act="cede" data-id="${c.id}">Ceder</button><button class="btn sm ghost" data-act="rejectClaim" data-id="${c.id}">Rechazar</button></div></div>`; }).join('')}
+    ${pendT.map(t => tradeRow(t, true)).join('')}
+    ${mineC.map(c => { const bk = S.bookings.find(x => x.id === c.bookingId); return bk ? `<div class="item mut">Esperando respuesta de ${PLAYERS[c.owner].name} por ${dLbl(bk.start)} ${hhmm(bk.start)}</div>` : ''; }).join('')}
+    ${pendT.length + pendC.length + mineC.length ? '' : '<div class="mut">Nada pendiente 👌</div>'}</div>
+  <div class="card"><h2>Próximos turnos</h2>${next.length ? next.map(x => `<div class="item row sp"><div>${pchip(x.player)} <b>${dLbl(x.start)}</b> ${hhmm(x.start)}–${hhmm(x.end)}</div><span class="mut">${fmtH(analyze(x.player, x.start, x.end).cost)}</span></div>`).join('') : '<div class="mut">No hay turnos reservados.</div>'}</div>
+  <div class="card"><h2>Prioridad semanal</h2><div class="mut">En choques gana quien jugó menos minutos compartidos en la semana (lun–dom).</div>
+    <div class="row sp" style="margin-top:6px"><span>${pchip('lauty')} ${fmtH(pr.lauty)}</span><span>${pchip('fran')} ${fmtH(pr.fran)}</span></div>
+    <div style="margin-top:6px">${pr.winner ? 'Prioridad: ' + pchip(pr.winner) : 'Empate'}</div></div>`;
+}
+const fmtT = ms => { const s = Math.max(0, Math.floor(ms / 1000)); return pad(Math.floor(s / 3600)) + ':' + pad(Math.floor(s % 3600 / 60)) + ':' + pad(s % 60); };
+
+function tradeRow(t, actions) {
+  const me = S.me, isMine = t.createdBy === me;
+  const txt = t.createdBy === t.from ? `${pchip(t.from)} regala <b>${fmtH(t.minutes)}</b> a ${pchip(t.to)}` : `${pchip(t.to)} pide <b>${fmtH(t.minutes)}</b> a ${pchip(t.from)}`;
+  const st = { pending: 'pendiente', accepted: 'aceptado', rejected: 'rechazado' }[t.status];
+  return `<div class="item"><div>${txt} <span class="tag">${st}</span></div><div class="mut">“${esc(t.note)}” · ${dLbl(t.createdAt || Date.now())}</div>
+   ${t.status === 'pending' ? (isMine ? `<button class="btn sm ghost" style="margin-top:6px" data-act="tradeNo" data-id="${t.id}">Cancelar</button>` : `<div class="row" style="margin-top:6px"><button class="btn sm" data-act="tradeOk" data-id="${t.id}">Aceptar</button><button class="btn sm ghost" data-act="tradeNo" data-id="${t.id}">Rechazar</button></div>`) : ''}</div>`;
+}
+
+function vTurnos() {
+  if (!S.day) S.day = dayStart(Date.now());
+  const today = dayStart(Date.now()), ds = S.day;
+  const chips = Array.from({ length: 14 }, (_, i) => { const t = today + i * DAY; return `<button class="${t === ds ? 'on' : ''}" data-act="day" data-t="${t}"><b>${LD(t).getUTCDate()}</b><span>${i ? DOWN[dow(t)] : 'HOY'}</span></button>`; }).join('');
+  // PS5 column segments
+  let ps = '', runT = null, runS = 0;
+  const flush = (end) => { if (runT) ps += `<div class="blk ${runT === 'shared' ? 'shared' : runT === 'none' ? 'none' : 't-' + runT}" style="top:${runS}px;height:${end - runS}px">${TYPE_LBL[runT]}</div>`; };
+  for (let i = 0; i < 96; i++) { const ty = slotType(ds + i * SLOT); if (ty !== runT) { flush(i * 15); runT = ty; runS = i * 15; } }
+  flush(1440);
+  S.bookings.filter(b => b.end > ds && b.start < ds + DAY).forEach(b => {
+    const a = Math.max(b.start, ds), e = Math.min(b.end, ds + DAY), top = (a - ds) / MIN, h = (e - a) / MIN;
+    ps += `<div class="blk bk ${b.player}" data-act="booking" data-id="${b.id}" style="top:${top}px;height:${h}px"><b class="c-${b.player}">${PLAYERS[b.player].name}</b> ${hhmm(b.start)}–${hhmm(b.end)}</div>`;
+  });
+  const busyCol = p => {
+    let out = '', key = null, st = 0, info = null;
+    const fl = end => { if (key) out += `<div class="blk ${info.kind}" style="top:${st}px;height:${end - st}px">${esc(info.label)}</div>`; };
+    for (let i = 0; i < 96; i++) {
+      const x = slotInfo(p, ds + i * SLOT), k = (!x.free || x.kind === 'ovfree') ? x.kind + '|' + x.label : null;
+      if (k !== key) { fl(i * 15); key = k; st = i * 15; info = x; }
+    }
+    fl(1440); return out;
+  };
+  const gut = Array.from({ length: 24 }, (_, h) => `<i style="top:${h * 60}px">${pad(h)}</i>`).join('');
+  const now = Date.now(), nowL = ds === today ? `<div class="nowl" style="top:${(now - ds) / MIN}px"></div>` : '';
+  return `<div class="card"><h2>Turnos</h2><div class="days">${chips}</div>
+    <div class="row wrapx"><button class="btn sm" data-act="reserve">+ Reservar</button><button class="btn sm ghost" data-act="ovrides">No estoy / Estoy libre</button></div>
+    <div class="legend"><span><i style="background:linear-gradient(90deg,#22e6ff,#ff3d9a)"></i>Compartida</span><span><i style="background:rgba(34,230,255,.6)"></i>Excl. Lauty</span><span><i style="background:rgba(255,61,154,.6)"></i>Excl. Fran</span><span><i style="background:#222"></i>Nadie</span></div>
+    <div class="mut">Tocá un lugar libre de la columna PS5 para reservar, o un turno para verlo / reclamarlo.</div></div>
+    <div class="tlh"><div></div><div class="c-lauty">LAUTY OCUPADO</div><div style="color:var(--yellow)">PS5 · ${dLbl(ds)}</div><div class="c-fran">FRAN OCUPADO</div></div>
+    <div class="tl" id="tl"><div class="gut">${gut}</div><div class="col lauty">${busyCol('lauty')}${nowL}</div><div class="col" data-act="ps5col">${ps}${nowL}</div><div class="col fran">${busyCol('fran')}${nowL}</div></div>`;
+}
+
+function vTradeo() {
+  const me = S.me, ot = other(me);
+  const tr = S.trades.slice().sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+  return `<div class="card"><h2>Nuevo tradeo</h2>
+    <div class="seg"><button class="${S.trKind === 'give' ? 'on' : ''}" data-act="trKind" data-k="give">Regalar</button><button class="${S.trKind === 'ask' ? 'on' : ''}" data-act="trKind" data-k="ask">Pedir</button></div>
+    <div class="mut" style="margin-top:6px">${S.trKind === 'give' ? `Le regalás horas a ${PLAYERS[ot].name}.` : `Le pedís horas a ${PLAYERS[ot].name}.`} Queda pendiente hasta que acepte.</div>
+    <label>Horas</label><input id="tr-h" type="number" inputmode="decimal" min="0.25" step="0.25" value="1">
+    <label>Motivo</label><input id="tr-n" type="text" maxlength="120" placeholder="Ej: me dejó jugar el sábado">
+    <button class="btn full" style="margin-top:12px" data-act="trSend">Enviar</button></div>
+    <div class="card"><h2>Tradeos</h2>${tr.length ? tr.map(t => tradeRow(t, true)).join('') : '<div class="mut">Todavía no hay tradeos.</div>'}</div>`;
+}
+
+function vHist() {
+  const me = S.me, ses = S.sessions.filter(s => S.filter === 'all' || s.player === S.filter).sort((a, b) => b.start - a.start);
+  const d0 = dkey(Date.now());
+  return `<div class="card"><h2>Carga manual</h2><div class="mut">Sesión que te olvidaste de cronometrar (a tu nombre).</div>
+    <label>Día</label><input type="date" id="m-d" value="${d0}" data-est="m">
+    <div class="row"><div style="flex:1"><label>Desde</label><input type="time" id="m-a" step="900" value="18:00" data-est="m"></div><div style="flex:1"><label>Hasta</label><input type="time" id="m-b" step="900" value="19:00" data-est="m"></div></div>
+    <div class="est" id="est-m"></div><button class="btn full" style="margin-top:10px" data-act="manual">Guardar sesión</button></div>
+  <div class="card"><h2>Configuración</h2><label>Costo de jugar en franja exclusiva propia (el resto cuesta 100%)</label>
+    <div class="seg">${[0, 25, 50, 100].map(v => `<button class="${Math.round(factor() * 100) === v ? 'on' : ''}" data-act="factor" data-v="${v}">${v}%</button>`).join('')}</div>
+    <div class="mut" style="margin-top:6px">Las sesiones ya guardadas no se recalculan.</div></div>
+  <div class="card"><h2>Sesiones</h2><div class="seg" style="margin-bottom:6px">${[['all', 'Todas'], ['lauty', 'Lauty'], ['fran', 'Fran']].map(([k, l]) => `<button class="${S.filter === k ? 'on' : ''}" data-act="filter" data-k="${k}">${l}</button>`).join('')}</div>
+    ${ses.length ? ses.map(s => `<div class="item row sp"><div>${pchip(s.player)} <b>${dLbl(s.start)}</b> ${hhmm(s.start)}–${hhmm(s.end)}${s.manual ? '<span class="tag">manual</span>' : ''}
+      <div class="mut">${fmtH(s.minutes)} jugadas · ${fmtH(s.minutesShared)} comp. · ${fmtH(s.minutesExclusive)} excl. · costo <b>${fmtH(s.cost)}</b></div></div>
+      ${s.player === me ? `<button class="btn sm ghost" data-act="delSes" data-id="${s.id}">Borrar</button>` : ''}</div>`).join('') : '<div class="mut">Sin sesiones todavía.</div>'}</div>
+  <div class="card"><details><summary>Depósitos diarios</summary>${depositsHTML()}</details></div>
+  <div class="card"><button class="btn ghost full" data-act="logout">Cerrar sesión</button></div>`;
+}
+function depositsHTML() {
+  const now = Date.now(); if (now < LAUNCH) return '<div class="mut">Empiezan el 19/11.</div>';
+  let out = ''; for (let ds = dayStart(now); ds >= LAUNCH; ds -= DAY) out += `<div class="item row sp"><span>${dLbl(ds)}</span><span>+${fmtH(sharedMinutes(ds) / 2)} c/u</span></div>`;
+  return out;
+}
+
+function renderShell() {
+  const me = PLAYERS[S.me], b = balances();
+  const nPend = S.trades.filter(t => t.status === 'pending' && t.createdBy !== S.me).length + S.claims.filter(c => c.status === 'pending' && c.owner === S.me && S.bookings.some(x => x.id === c.bookingId)).length;
+  const body = { home: vHome, turnos: vTurnos, tradeo: vTradeo, hist: vHist }[S.tab]();
+  $('#app').innerHTML = `${DEMO ? '<div class="demo">MODO DEMO · SIN FIREBASE</div>' : ''}<div class="top"><div class="wrap"><div class="logo">ALCANCÍA DE HORAS<small>GTA 6</small></div><span class="chip ${S.me}" style="font-size:16px">${me.name}</span></div></div><div class="wrap">${body}</div>`;
+  const nav = $('#nav'); nav.style.display = 'flex';
+  nav.innerHTML = [['home', 'Inicio'], ['turnos', 'Turnos'], ['tradeo', 'Tradeo'], ['hist', 'Historial']].map(([k, l]) => `<button class="${S.tab === k ? 'on' : ''}" data-act="tab" data-k="${k}">${l}${k === 'home' && nPend ? `<span class="dot">${nPend}</span>` : ''}</button>`).join('');
+  if (S.tab === 'hist') updEst('m');
+  if (S.tab === 'turnos' && !S.scrolled) { S.scrolled = true; const tl = $('#tl'); if (tl) window.scrollTo(0, tl.offsetTop + (S.day === dayStart(Date.now()) ? Math.max(0, (Date.now() - S.day) / MIN - 160) : 400)); }
+}
+let rq = 0;
+function render() {
+  cancelAnimationFrame(rq);
+  rq = requestAnimationFrame(() => {
+    if (!S.ready) return;
+    if ($('#modal').classList.contains('on')) { if (!S.me) closeModal(); else return; }
+    if (!S.me) { if (!$('#dots')) { $('#app').innerHTML = vLogin(); $('#nav').style.display = 'none'; } return; }
+    const y = window.scrollY; renderShell(); window.scrollTo(0, y);
+  });
+}
+
+/* ===================== MODALES ===================== */
+function estimateFrom(p, d, a, b) {
+  if (!d || !a || !b) return null;
+  const s = parseDT(d, a); let e = parseDT(d, b); if (e <= s) e += DAY;
+  return { s, e, ...analyze(p, s, e) };
+}
+function estHTML(x) {
+  if (!x) return 'Completá día y horarios';
+  return `${fmtH(x.minutes)} en total · compartida <b>${fmtH(x.minutesShared)}</b> · exclusiva propia <b>${fmtH(x.minutesExclusive)}</b> · otras <b>${fmtH(x.minutes - x.minutesShared - x.minutesExclusive)}</b><br>Costo estimado: <b>${fmtH(x.cost)}</b>${x.s < LAUNCH ? ' (antes del lanzamiento: gratis)' : ''}`;
+}
+function updEst(k) {
+  const el = $('#est-' + k); if (!el) return;
+  const pre = k === 'm' ? 'm' : 'r';
+  el.innerHTML = estHTML(estimateFrom(S.me, val(pre + '-d'), val(pre + '-a'), val(pre + '-b')));
+}
+function reserveModal(d, a, b) {
+  modal(`<h2 style="color:var(--yellow)">Reservar PS5</h2>
+    <label>Día</label><input type="date" id="r-d" value="${d}" data-est="r">
+    <div class="row"><div style="flex:1"><label>Desde</label><input type="time" id="r-a" step="900" value="${a}" data-est="r"></div><div style="flex:1"><label>Hasta</label><input type="time" id="r-b" step="900" value="${b}" data-est="r"></div></div>
+    <div class="est" id="est-r"></div>
+    <div class="row" style="margin-top:12px"><button class="btn full" data-act="doReserve">Reservar</button><button class="btn ghost" data-act="close">Cancelar</button></div>`);
+  updEst('r');
+}
+function bookingModal(id) {
+  const b = S.bookings.find(x => x.id === id); if (!b) return;
+  const x = analyze(b.player, b.start, b.end), mine = b.player === S.me;
+  const pc = S.claims.find(c => c.bookingId === id && c.status === 'pending');
+  const pr = priority(b.start);
+  modal(`<h2 class="c-${b.player}">Turno de ${PLAYERS[b.player].name}</h2>
+    <div style="margin:8px 0"><b>${dLbl(b.start)}</b> ${hhmm(b.start)}–${hhmm(b.end)}</div><div class="est">${estHTML({ s: b.start, ...x })}</div>
+    ${!mine ? `<div class="mut" style="margin-top:8px">Prioridad esa semana: ${pr.winner ? PLAYERS[pr.winner].name : 'empate'} (jugó menos compartidas).</div>` : ''}
+    <div class="row" style="margin-top:12px">${mine ? `<button class="btn red full" data-act="cancelBk" data-id="${id}">Cancelar reserva</button>`
+      : pc ? `<div class="mut" style="flex:1">Reclamo pendiente de ${PLAYERS[pc.by].name}</div>` : `<button class="btn full" data-act="claim" data-id="${id}">Reclamar turno</button>`}
+      <button class="btn ghost" data-act="close">Cerrar</button></div>`);
+}
+function overridesModal() {
+  const ds = S.day || dayStart(Date.now()), mine = S.overrides.filter(o => o.player === S.me && o.end > ds && o.start < ds + DAY);
+  modal(`<h2 style="color:var(--yellow)">Mi disponibilidad</h2><div class="mut">Pisa tu horario normal. Solo hoy o a futuro.</div>
+    <div class="seg" style="margin-top:8px"><button class="on" id="o-t1" data-act="ovType" data-k="busy">No estoy</button><button id="o-t2" data-act="ovType" data-k="free">Estoy libre</button></div>
+    <label>Día</label><input type="date" id="o-d" value="${dkey(Math.max(ds, dayStart(Date.now())))}">
+    <div class="row"><div style="flex:1"><label>Desde</label><input type="time" id="o-a" step="900" value="18:00"></div><div style="flex:1"><label>Hasta</label><input type="time" id="o-b" step="900" value="20:00"></div></div>
+    <div class="row" style="margin-top:12px"><button class="btn full" data-act="ovSave">Guardar</button><button class="btn ghost" data-act="close">Cerrar</button></div>
+    <h3 style="margin-top:16px;font-size:16px">Mis excepciones de ${dLbl(ds)}</h3>
+    ${mine.length ? mine.map(o => `<div class="item row sp"><span>${o.type === 'busy' ? 'No estoy' : 'Estoy libre'} ${hhmm(o.start)}–${hhmm(o.end)}</span><button class="btn sm ghost" data-act="ovDel" data-id="${o.id}">Borrar</button></div>`).join('') : '<div class="mut">Ninguna.</div>'}`);
+  window.__ovType = 'busy';
+}
+
+/* ===================== ACCIONES ===================== */
+const H = {
+  key(d) {
+    const k = d.k; if (k === 'c') S.pin = ''; else if (k !== 'x' && S.pin.length < 4) S.pin += k;
+    document.querySelectorAll('#dots i').forEach((e, i) => e.classList.toggle('f', i < S.pin.length));
+    if (S.pin.length === 4) {
+      const h = sha256(SALT + S.pin), p = Object.values(PLAYERS).find(x => x.hash === h); S.pin = '';
+      if (p) { S.me = p.id; try { localStorage.setItem('gta6.me', p.id); } catch (e) { } S.tab = 'home'; renderShell(); }
+      else { const dd = $('#dots'); dd.classList.add('shake'); if (navigator.vibrate) navigator.vibrate(200); setTimeout(() => { dd.classList.remove('shake'); document.querySelectorAll('#dots i').forEach(e => e.classList.remove('f')); }, 450); }
+    }
+  },
+  logout() { S.me = null; try { localStorage.removeItem('gta6.me'); } catch (e) { } $('#app').innerHTML = vLogin(); $('#nav').style.display = 'none'; window.scrollTo(0, 0); },
+  tab(d) { S.tab = d.k; if (d.k === 'turnos') S.scrolled = false; renderShell(); window.scrollTo(0, 0); },
+  close: closeModal,
+  day(d) { S.day = +d.t; S.scrolled = false; renderShell(); },
+  async start() {
+    if (S.live && S.live.player) return toast('La PS5 ya está en uso');
+    const now = Date.now(), bk = S.bookings.find(b => b.player !== S.me && b.start <= now && b.end > now);
+    if (bk && !confirm(`${PLAYERS[bk.player].name} tiene reservado ahora hasta las ${hhmm(bk.end)}. ¿Arrancar igual?`)) return;
+    await act(() => store.setMeta('live', { player: S.me, since: now }));
+  },
+  async end() {
+    const l = S.live; if (!l || l.player !== S.me) return;
+    const now = Date.now(), x = analyze(S.me, l.since, now);
+    if (x.minutes >= 0.1) await act(() => store.add('sessions', { player: S.me, start: l.since, end: now, ...x, createdAt: now }));
+    await act(() => store.setMeta('live', { player: null, since: null }));
+    flash('passed', `${fmtH(x.minutes)} jugadas · costo ${fmtH(x.cost)}`);
+  },
+  reserve() { const d = dkey(S.day || Date.now()), n = Math.ceil(Math.max(Date.now(), S.day || 0) / SLOT) * SLOT; reserveModal(d, hhmm(n), hhmm(n + 60 * MIN)); },
+  ps5col(d, el, e) {
+    if (e.target.closest('[data-act="booking"]')) return;
+    const r = el.getBoundingClientRect(), m = Math.floor((e.clientY - r.top) / 15) * 15, t = S.day + m * MIN;
+    reserveModal(dkey(S.day), hhmm(t), hhmm(t + 60 * MIN));
+  },
+  booking(d) { bookingModal(d.id); },
+  async doReserve() {
+    const x = estimateFrom(S.me, val('r-d'), val('r-a'), val('r-b')); if (!x) return toast('Completá los datos');
+    if (x.e - x.s > DAY) return toast('Máximo 24 hs');
+    if (x.e <= Date.now()) return toast('Ese horario ya pasó');
+    if (x.s < floor15(Date.now())) return toast('El turno no puede empezar en el pasado');
+    const c = S.bookings.find(b => b.start < x.e && b.end > x.s);
+    if (c) return toast(`Se superpone con el turno de ${PLAYERS[c.player].name} (${hhmm(c.start)}–${hhmm(c.end)})`);
+    closeModal();
+    if (await act(() => store.add('bookings', { player: S.me, start: x.s, end: x.e, createdAt: Date.now() }))) flash('passed', `Turno reservado · costo estimado ${fmtH(x.cost)}`);
+  },
+  async cancelBk(d) { closeModal(); if (await act(() => store.del('bookings', d.id))) flash('wasted', 'Turno cancelado'); },
+  async claim(d) {
+    const b = S.bookings.find(x => x.id === d.id); if (!b || b.player === S.me) return;
+    if (S.claims.some(c => c.bookingId === d.id && c.status === 'pending')) return toast('Ya hay un reclamo pendiente');
+    closeModal(); await act(() => store.add('claims', { bookingId: d.id, by: S.me, owner: b.player, status: 'pending', createdAt: Date.now() }), 'Reclamo enviado');
+  },
+  async cede(d) {
+    const c = S.claims.find(x => x.id === d.id); if (!c) return;
+    if (!(await act(() => store.upd('bookings', c.bookingId, { player: c.by })))) return;
+    await act(() => store.upd('claims', d.id, { status: 'ceded' })); flash('wasted', 'Cediste el turno. Arreglen con un tradeo.');
+  },
+  async rejectClaim(d) { if (await act(() => store.upd('claims', d.id, { status: 'rejected' }))) flash('passed', 'Turno defendido'); },
+  ovrides: overridesModal,
+  ovType(d) { window.__ovType = d.k; $('#o-t1').classList.toggle('on', d.k === 'busy'); $('#o-t2').classList.toggle('on', d.k === 'free'); },
+  async ovSave() {
+    const d = val('o-d'), a = val('o-a'), b = val('o-b'); if (!d || !a || !b) return toast('Completá los datos');
+    const s = parseDT(d, a); let e = parseDT(d, b); if (e <= s) e += DAY;
+    if (dayStart(s) < dayStart(Date.now())) return toast('Solo hoy o a futuro');
+    closeModal(); await act(() => store.add('overrides', { player: S.me, type: window.__ovType || 'busy', start: s, end: e, createdAt: Date.now() }), 'Guardado');
+  },
+  async ovDel(d) { closeModal(); await act(() => store.del('overrides', d.id), 'Borrado'); },
+  trKind(d) { S.trKind = d.k; renderShell(); },
+  async trSend() {
+    const h = parseFloat(val('tr-h')), note = val('tr-n').trim();
+    if (!(h > 0)) return toast('Poné una cantidad de horas'); if (!note) return toast('Poné un motivo');
+    const o = other(S.me), m = Math.round(h * 60);
+    const t = S.trKind === 'give' ? { from: S.me, to: o } : { from: o, to: S.me };
+    if (await act(() => store.add('trades', { ...t, minutes: m, note, createdBy: S.me, status: 'pending', createdAt: Date.now() }), 'Enviado')) { $('#tr-n').value = ''; }
+  },
+  async tradeOk(d) {
+    const t = S.trades.find(x => x.id === d.id); if (!t) return;
+    if (t.from === S.me && balances()[S.me].total - t.minutes < 0 && !confirm('Tu saldo quedaría en negativo. ¿Aceptar igual?')) return;
+    if (await act(() => store.upd('trades', d.id, { status: 'accepted', resolvedAt: Date.now() }))) flash('passed', 'Tradeo aceptado');
+  },
+  async tradeNo(d) { if (await act(() => store.upd('trades', d.id, { status: 'rejected', resolvedAt: Date.now() }))) flash('wasted', 'Tradeo cerrado'); },
+  filter(d) { S.filter = d.k; renderShell(); },
+  async factor(d) { await act(() => store.setMeta('config', { exclusiveFactor: +d.v }), 'Guardado'); },
+  async delSes(d) { if (!confirm('¿Borrar esta sesión? Se devuelve el costo al saldo.')) return; if (await act(() => store.del('sessions', d.id))) flash('wasted', 'Sesión borrada'); },
+  async manual() {
+    const x = estimateFrom(S.me, val('m-d'), val('m-a'), val('m-b')); if (!x) return toast('Completá los datos');
+    if (x.e > Date.now()) return toast('No podés cargar una sesión futura');
+    const { s, e, ...rest } = x;
+    if (await act(() => store.add('sessions', { player: S.me, start: s, end: e, ...rest, manual: true, createdAt: Date.now() }))) flash('passed', `Sesión cargada · costo ${fmtH(x.cost)}`);
+  }
+};
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-act]'); if (!el) { if (e.target.id === 'modal') closeModal(); return; }
+  const fn = H[el.dataset.act]; if (fn) fn(el.dataset, el, e);
+});
+document.addEventListener('input', e => { const k = e.target.dataset && e.target.dataset.est; if (k) updEst(k); });
+
+/* ===================== LOOP / ARRANQUE ===================== */
+setInterval(() => {
+  const cd = document.getElementById('cd'); if (cd) cd.innerHTML = cdHTML();
+  const t = document.getElementById('timer'); if (t && S.live && S.live.since) t.textContent = fmtT(Date.now() - S.live.since);
+  if (S.me && S.live && S.live.player) { const b = balances(); document.querySelectorAll('[data-bal]').forEach(el => { el.textContent = fmtH(b[el.dataset.bal].total); }); }
+}, 1000);
+setInterval(() => { if (S.me && S.tab === 'home') render(); }, 30000);
+
+async function boot() {
+  $('#app').innerHTML = '<div class="wrap login"><div class="logo" style="text-align:center;font-size:32px">CONECTANDO…</div></div>';
+  try { await store.init(); } catch (e) { $('#app').innerHTML = `<div class="wrap"><div class="card">No se pudo conectar con Firebase: ${esc(e.message)}</div></div>`; return; }
+  COLS.forEach(c => store.watch(c, v => { S[c] = v; render(); }));
+  store.watch('config', v => { S.config = v; render(); });
+  store.watch('live', v => { S.live = v; render(); });
+  try { const m = localStorage.getItem('gta6.me'); if (PLAYERS[m]) S.me = m; } catch (e) { }
+  S.ready = true; S.day = dayStart(Date.now());
+  if (S.me) renderShell(); else { $('#app').innerHTML = vLogin(); }
+}
+store = DEMO ? demoStore() : fbStore();
+window.GTA = { S, mk, analyze, slotType, slotInfo, balances, sharedMinutes, sha256, priority, dayStart, LAUNCH, boot, store, H };
+boot();
+})();
+</script>
+</body>
+</html>
