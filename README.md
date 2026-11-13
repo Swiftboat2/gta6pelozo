@@ -4,12 +4,12 @@ Web app estática (un solo `index.html`, CSS/JS inline) + Firebase (Firestore + 
 
 ## Firebase
 1. Crear proyecto → Firestore (modo producción) → Authentication → habilitar **Anónimo**.
-2. Configuración del proyecto → app web → copiar `firebaseConfig` y pegarlo en el `<script>` de arriba de `index.html`.
-   Si `apiKey` queda vacío la app corre en **modo demo** (localStorage).
+2. La config NO está en el repo. En Vercel → Settings → Environment Variables cargar: `FIREBASE_API_KEY`, `FIREBASE_AUTH_DOMAIN`, `FIREBASE_PROJECT_ID`, `FIREBASE_STORAGE_BUCKET`, `FIREBASE_MESSAGING_SENDER_ID`, `FIREBASE_APP_ID` (opcional `FIREBASE_MEASUREMENT_ID`; también acepta prefijo `NEXT_PUBLIC_`/`VITE_`). `build.js` genera `firebase-config.js` en cada deploy.
+   Sin config la app corre en **modo demo** (localStorage).
 3. Publicar reglas: `firebase deploy --only firestore:rules` (usa `firebase.json` + `firestore.rules`).
 
 ## Vercel
-Framework **Other**, sin build command, output directory = raíz. Conectar el proyecto existente a este repo (rama `main`).
+Framework **Other**; `vercel.json` ya define `node build.js` (solo genera la config) y output = raíz. Conectar el proyecto existente a este repo (rama `main`).
 
 ## Reglas de negocio
 - PIN 1405 = Lautaro, 1005 = Francisco (se guarda el hash SHA-256, no el PIN).

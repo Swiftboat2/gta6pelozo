@@ -130,17 +130,12 @@ details summary{cursor:pointer;color:var(--yellow);font-family:var(--disp);lette
 <div id="flash"></div>
 <div id="toast"></div>
 
-<!-- ============ PEGAR ACÁ EL firebaseConfig (si queda vacío → modo DEMO con localStorage) ============ -->
+<!-- Config de Firebase: en Vercel la genera build.js (firebase-config.js) desde variables de entorno.
+     Si no existe y apiKey queda vacío → modo DEMO con localStorage. También se puede pegar acá para probar local. -->
 <script>
-const firebaseConfig = {
-  apiKey: "",
-  authDomain: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: ""
-};
+var firebaseConfig = { apiKey: "", authDomain: "", projectId: "", storageBucket: "", messagingSenderId: "", appId: "" };
 </script>
+<script src="firebase-config.js"></script>
 
 <script>
 (() => {
