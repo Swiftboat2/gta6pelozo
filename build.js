@@ -1,12 +1,18 @@
 // Genera firebase-config.js a partir de variables de entorno de Vercel (no se commitea).
+// Tolerante con los nombres: acepta cualquier variable que contenga FIREBASE y termine en la clave
+// (ej. FIREBASE_API_KEY, NEXT_PUBLIC_FIREBASE_API_KEY, VITE_FIREBASE_API_KEY...).
 const fs = require('fs');
-const pre = ['', 'NEXT_PUBLIC_', 'VITE_', 'REACT_APP_'];
-const get = n => { for (const p of pre) if (process.env[p + n]) return process.env[p + n]; return ''; };
-const cfg = {
-  apiKey: get('FIREBASE_API_KEY'), authDomain: get('FIREBASE_AUTH_DOMAIN'), projectId: get('FIREBASE_PROJECT_ID'),
-  storageBucket: get('FIREBASE_STORAGE_BUCKET'), messagingSenderId: get('FIREBASE_MESSAGING_SENDER_ID'),
-  appId: get('FIREBASE_APP_ID'), measurementId: get('FIREBASE_MEASUREMENT_ID')
+const env = process.env;
+const find = suffixes => {
+  const names = Object.keys(env).filter(k => /FIREBASE/i.test(k));
+  for (const s of suffixes) { const k = names.find(n => n.toUpperCase().endsWith(s)); if (k && env[k]) return env[k]; }
+  return '';
 };
-if (!cfg.apiKey) console.warn('⚠ FIREBASE_API_KEY no definida: la app va a correr en modo DEMO.');
+const cfg = {
+  apiKey: find(['API_KEY', 'APIKEY']), authDomain: find(['AUTH_DOMAIN', 'AUTHDOMAIN']), projectId: find(['PROJECT_ID', 'PROJECTID']),
+  storageBucket: find(['STORAGE_BUCKET', 'STORAGEBUCKET']), messagingSenderId: find(['MESSAGING_SENDER_ID', 'SENDER_ID']),
+  appId: find(['APP_ID', 'APPID']), measurementId: find(['MEASUREMENT_ID'])
+};
+if (!cfg.apiKey) console.warn('⚠ No hay variable *FIREBASE*API_KEY: la app va a correr en modo DEMO.');
 fs.writeFileSync('firebase-config.js', 'var firebaseConfig = ' + JSON.stringify(cfg, null, 2) + ';\n');
 console.log('firebase-config.js generado (' + (cfg.projectId || 'sin projectId') + ')');

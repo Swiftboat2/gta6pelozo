@@ -4,77 +4,66 @@ service cloud.firestore {
 
     function signedIn() { return request.auth != null; }
     function isPlayer(p) { return p == 'lauty' || p == 'fran'; }
-    function validRange(d, maxMs) {
-      return d.start is number && d.end is number && d.end > d.start && (d.end - d.start) <= maxMs;
-    }
     function onlyChanges(keys) {
       return request.resource.data.diff(resource.data).affectedKeys().hasOnly(keys);
     }
 
-    match /bookings/{id} {
+    // Bloques de 30 min. El id es "AAAA-MM-DD_idx": un solo doc por casillero => no hay doble reserva.
+    match /blocks/{id} {
       allow read: if signedIn();
-      allow create: if signedIn() && isPlayer(request.resource.data.player)
-                    && validRange(request.resource.data, 86400000);
-      // solo se puede cambiar el dueño (ceder un turno)
+      allow create: if signedIn()
+                    && isPlayer(request.resource.data.player)
+                    && request.resource.data.day is string
+                    && request.resource.data.idx is int
+                    && request.resource.data.idx >= 0 && request.resource.data.idx < 48
+                    && id == request.resource.data.day + '_' + string(request.resource.data.idx);
+      // solo cambia de dueño (intercambio aceptado)
       allow update: if signedIn() && onlyChanges(['player']) && isPlayer(request.resource.data.player);
+      // liberar manual o por no-show
       allow delete: if signedIn();
     }
 
-    match /sessions/{id} {
+    // Segmentos de juego real (entre Iniciar/Reanudar y Pausar/Terminar)
+    match /plays/{id} {
       allow read: if signedIn();
       allow create: if signedIn() && isPlayer(request.resource.data.player)
-                    && validRange(request.resource.data, 172800000)
-                    && request.resource.data.minutes is number && request.resource.data.minutes >= 0
-                    && request.resource.data.minutesShared is number && request.resource.data.minutesShared >= 0
-                    && request.resource.data.minutesExclusive is number && request.resource.data.minutesExclusive >= 0
-                    && request.resource.data.cost is number && request.resource.data.cost >= 0;
-      allow update: if false;
-      allow delete: if signedIn();
+                    && request.resource.data.start is number && request.resource.data.end is number
+                    && request.resource.data.end > request.resource.data.start
+                    && request.resource.data.end - request.resource.data.start <= 86400000
+                    && request.resource.data.minutes is number;
+      allow update, delete: if false;
     }
 
+    // Cronómetro en vivo: un doc por jugador (id = lauty | fran)
+    match /live/{p} {
+      allow read: if signedIn();
+      allow create, update: if signedIn() && isPlayer(p)
+                            && request.resource.data.player == p
+                            && request.resource.data.state in ['running', 'paused']
+                            && request.resource.data.accMs is number
+                            && request.resource.data.sessionStart is number;
+      allow delete: if signedIn() && isPlayer(p);
+    }
+
+    // Tradeos: swap (bloques), gift (regalo de saldo del día), loan (préstamo inter-día)
     match /trades/{id} {
       allow read: if signedIn();
-      allow create: if signedIn() && isPlayer(request.resource.data.from) && isPlayer(request.resource.data.to)
+      allow create: if signedIn()
+                    && request.resource.data.type in ['swap', 'gift', 'loan']
+                    && isPlayer(request.resource.data.from) && isPlayer(request.resource.data.to)
                     && request.resource.data.from != request.resource.data.to
                     && request.resource.data.createdBy in [request.resource.data.from, request.resource.data.to]
-                    && request.resource.data.minutes is number && request.resource.data.minutes > 0 && request.resource.data.minutes <= 6000
-                    && request.resource.data.note is string && request.resource.data.note.size() > 0 && request.resource.data.note.size() <= 200
-                    && request.resource.data.status == 'pending';
-      allow update: if signedIn() && resource.data.status == 'pending' && onlyChanges(['status', 'resolvedAt'])
-                    && request.resource.data.status in ['accepted', 'rejected'];
+                    && request.resource.data.status == 'pending'
+                    && (request.resource.data.type == 'swap'
+                          ? (request.resource.data.give is list && request.resource.data.get is list
+                             && request.resource.data.give.size() > 0 && request.resource.data.give.size() <= 48
+                             && request.resource.data.give.size() == request.resource.data.get.size())
+                          : (request.resource.data.hours is number && request.resource.data.hours >= 0.5
+                             && request.resource.data.hours <= 12 && request.resource.data.day is string));
+      allow update: if signedIn() && resource.data.status == 'pending'
+                    && onlyChanges(['status', 'resolvedAt'])
+                    && request.resource.data.status in ['accepted', 'rejected', 'cancelled'];
       allow delete: if false;
-    }
-
-    match /claims/{id} {
-      allow read: if signedIn();
-      allow create: if signedIn() && request.resource.data.bookingId is string
-                    && isPlayer(request.resource.data.by) && isPlayer(request.resource.data.owner)
-                    && request.resource.data.by != request.resource.data.owner
-                    && request.resource.data.status == 'pending';
-      allow update: if signedIn() && resource.data.status == 'pending' && onlyChanges(['status'])
-                    && request.resource.data.status in ['ceded', 'rejected'];
-      allow delete: if false;
-    }
-
-    match /overrides/{id} {
-      allow read: if signedIn();
-      allow create: if signedIn() && isPlayer(request.resource.data.player)
-                    && request.resource.data.type in ['busy', 'free']
-                    && validRange(request.resource.data, 86400000);
-      allow update: if false;
-      allow delete: if signedIn();
-    }
-
-    match /meta/config {
-      allow read: if signedIn();
-      allow write: if signedIn() && request.resource.data.exclusiveFactor in [0, 25, 50, 100];
-    }
-
-    match /meta/live {
-      allow read: if signedIn();
-      allow write: if signedIn()
-                   && (request.resource.data.player == null
-                       || (isPlayer(request.resource.data.player) && request.resource.data.since is number));
     }
   }
 }

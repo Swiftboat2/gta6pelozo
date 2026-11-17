@@ -1,27 +1,19 @@
 # Alcancía de Horas GTA 6
 
-Web app estática (un solo `index.html`, CSS/JS inline) + Firebase (Firestore + Auth anónima). Reparte el tiempo de una PS5 compartida entre Lautaro y Francisco. Lanzamiento: jueves 19/11/2026 00:00 (America/Buenos_Aires, UTC-3 fijo).
+Web app estática (un `index.html`, CSS/JS inline) + Firebase (Firestore + Auth anónima) para repartir el uso de una consola/PC entre dos hermanos. Login por PIN (1405 = Lautaro, 1005 = Francisco; se guarda solo el hash SHA-256).
 
-## Firebase
-1. Crear proyecto → Firestore (modo producción) → Authentication → habilitar **Anónimo**.
-2. La config NO está en el repo. En Vercel → Settings → Environment Variables cargar: `FIREBASE_API_KEY`, `FIREBASE_AUTH_DOMAIN`, `FIREBASE_PROJECT_ID`, `FIREBASE_STORAGE_BUCKET`, `FIREBASE_MESSAGING_SENDER_ID`, `FIREBASE_APP_ID` (opcional `FIREBASE_MEASUREMENT_ID`; también acepta prefijo `NEXT_PUBLIC_`/`VITE_`). `build.js` genera `firebase-config.js` en cada deploy.
-   Sin config la app corre en **modo demo** (localStorage).
-3. Publicar reglas: `firebase deploy --only firestore:rules` (usa `firebase.json` + `firestore.rules`).
+## Reglas
+- Cada día (00:00–24:00, hora Buenos Aires) cada uno tiene **12 h** de presupuesto = 24 bloques de 30 min.
+- Reservar un bloque descuenta 0.5 h del saldo del día; **no suma horas jugadas**.
+- **Cronómetro**: Iniciar / Pausar / Reanudar / Terminar. Solo cuentan los minutos reales (segmentos en `plays`). Solo uno puede estar "jugando" a la vez.
+- **No-show**: si pasan 15 min del inicio de un bloque y el dueño no inició su sesión, el bloque se libera y el saldo vuelve.
+- **Tradeos** (el otro debe Aceptar/Rechazar): intercambio de bloques (misma cantidad), regalo/cesión de saldo de un día, préstamo inter-día (se devuelve del presupuesto de otro día).
+- Panel: saldo disponible del día de cada uno, horas reales acumuladas y diferencia neta.
 
-## Vercel
-Framework **Other**; `vercel.json` ya define `node build.js` (solo genera la config) y output = raíz. Conectar el proyecto existente a este repo (rama `main`).
+## Firestore
+`blocks/{día_idx}` · `plays` · `live/{lauty|fran}` · `trades`. Reglas en `firestore.rules` (`firebase deploy --only firestore:rules`).
+El id del bloque (`2026-11-19_32`) hace imposible la doble reserva (se crea con transacción).
 
-## Reglas de negocio
-- PIN 1405 = Lautaro, 1005 = Francisco (se guarda el hash SHA-256, no el PIN).
-- Franjas de 15 min: **compartida** (ambos libres) / **exclusiva de X** / **nadie**.
-- Depósito diario a cada uno = mitad de los minutos compartidos del día, desde el 19/11.
-- Costo: compartida 100 %, exclusiva propia = `exclusiveFactor` (0/25/50/100, default 0), resto 100 %. Cada sesión guarda `{minutes, minutesShared, minutesExclusive, cost}` y no se recalcula.
-- Saldo = depósitos − Σ cost ± trades aceptados.
-- Antes del 19/11 jugar es gratis (todavía no hay depósitos).
-- Feriado (lun 23/11): no corren mañana, sueño ni clases de Francisco; la ocupación de Lautaro 17–22 sí.
-- Horarios en `baseBusy()` / `FRAN_WEEK` / `HOLIDAYS` dentro de `index.html`.
-
-## Casos de prueba verificados
-Fran mar 24 18–20 → cuesta 0 · Fran mié 25 18–20 → 2 h · lun 23 10–12 → compartida · vie 20 03:00 → nadie · sáb 21 03:00 → compartida.
-
-Deploy: Vercel (Framework Other, sin build, output en la raíz).
+## Config / deploy
+La config de Firebase NO está en el repo: en Vercel → Environment Variables cargar `FIREBASE_API_KEY`, `FIREBASE_AUTH_DOMAIN`, `FIREBASE_PROJECT_ID`, `FIREBASE_STORAGE_BUCKET`, `FIREBASE_MESSAGING_SENDER_ID`, `FIREBASE_APP_ID` (se aceptan prefijos tipo `NEXT_PUBLIC_`/`VITE_`). `build.js` (ver `vercel.json`) genera `firebase-config.js` en cada deploy. Sin config corre en modo demo (localStorage).
+En Firebase: habilitar Authentication → Anónimo y publicar las reglas.

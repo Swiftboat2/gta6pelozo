@@ -9,92 +9,80 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#14022a; --card:rgba(16,3,34,.80); --line:rgba(255,255,255,.14);
-  --text:#fdf3ff; --mut:#c9b3e6;
-  --cyan:#22e6ff; --pink:#ff3d9a; --orange:#ff8a3d; --yellow:#ffd23f; --red:#ff2d55; --green:#3dffb0;
-  --lauty:var(--cyan); --fran:var(--pink);
-  --disp:'Anton','Impact',sans-serif; --body:'Rajdhani','Segoe UI',system-ui,sans-serif;
-}
+:root{--bg:#14022a;--card:rgba(16,3,34,.82);--line:rgba(255,255,255,.14);--text:#fdf3ff;--mut:#c9b3e6;
+  --cyan:#22e6ff;--pink:#ff3d9a;--orange:#ff8a3d;--yellow:#ffd23f;--red:#ff2d55;--green:#3dffb0;
+  --disp:'Anton','Impact',sans-serif;--body:'Rajdhani','Segoe UI',system-ui,sans-serif}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;min-height:100%}
 body{background:var(--bg);color:var(--text);font-family:var(--body);font-weight:600;font-size:17px;line-height:1.25;touch-action:manipulation;padding-bottom:84px}
-body::before{content:"";position:fixed;inset:0;z-index:-2;
-  background:linear-gradient(180deg,#14022a 0%,#2a0a52 34%,#8a1080 56%,#ff3d8b 72%,#ff8a3d 87%,#ffd23f 100%)}
+body::before{content:"";position:fixed;inset:0;z-index:-2;background:linear-gradient(180deg,#14022a 0%,#2a0a52 34%,#8a1080 56%,#ff3d8b 72%,#ff8a3d 87%,#ffd23f 100%)}
 body::after{content:"";position:fixed;left:0;right:0;bottom:0;height:34vh;z-index:-1;pointer-events:none;opacity:.9;
-  background:
-   radial-gradient(circle at 50% 100%,#ffd23f 0 22vh,transparent 22.5vh),
-   url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 80' preserveAspectRatio='none'><path fill='%23120224' d='M0 80V52h18V38h14v14h10V30h16v22h12V44h14v36h8V24h18v28h12V40h16v40h10V34h14v18h12V46h18v34h8V28h16v24h12V42h14v38h10V36h16v16h12V48h18v32z'/></svg>") bottom/100% 22vh no-repeat}
+  background:radial-gradient(circle at 50% 100%,#ffd23f 0 22vh,transparent 22.5vh),
+  url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 80' preserveAspectRatio='none'><path fill='%23120224' d='M0 80V52h18V38h14v14h10V30h16v22h12V44h14v36h8V24h18v28h12V40h16v40h10V34h14v18h12V46h18v34h8V28h16v24h12V42h14v38h10V36h16v16h12V48h18v32z'/></svg>") bottom/100% 22vh no-repeat}
 h1,h2,h3{font-family:var(--disp);font-weight:400;letter-spacing:.04em;text-transform:uppercase;margin:0}
 button{font:inherit;color:inherit;cursor:pointer}
-.wrap{max-width:560px;margin:0 auto;padding:12px 16px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin:12px 0;backdrop-filter:blur(6px)}
-.card h2{font-size:20px;margin-bottom:8px;color:var(--yellow);text-shadow:0 0 12px rgba(255,210,63,.4)}
-.row{display:flex;gap:8px;align-items:center}.row.sp{justify-content:space-between}.wrapx{flex-wrap:wrap}
+.wrap{max-width:560px;margin:0 auto;padding:10px 14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin:10px 0;backdrop-filter:blur(6px)}
+.card h2{font-size:19px;margin-bottom:8px;color:var(--yellow);text-shadow:0 0 12px rgba(255,210,63,.4)}
+.row{display:flex;gap:8px;align-items:center}.sp{justify-content:space-between}.wr{flex-wrap:wrap}
 .mut{color:var(--mut);font-size:14px}
-.chip{display:inline-block;padding:2px 10px;border-radius:99px;font-family:var(--disp);letter-spacing:.05em;font-size:14px;border:1.5px solid currentColor}
-.chip.lauty,.c-lauty{color:var(--lauty)}.chip.fran,.c-fran{color:var(--fran)}
-.btn{border:0;border-radius:12px;padding:12px 16px;font-family:var(--disp);letter-spacing:.06em;font-size:18px;text-transform:uppercase;
-  background:linear-gradient(135deg,var(--orange),var(--pink));color:#fff;box-shadow:0 4px 18px rgba(255,61,154,.35)}
-.btn.sm{padding:7px 12px;font-size:15px}.btn.ghost{background:transparent;border:1.5px solid var(--line);box-shadow:none;color:var(--text)}
+.chip{display:inline-block;padding:1px 9px;border-radius:99px;font-family:var(--disp);letter-spacing:.05em;font-size:14px;border:1.5px solid currentColor}
+.lauty{--c:var(--cyan)}.fran{--c:var(--pink)}
+.chip.lauty,.c-lauty{color:var(--cyan)}.chip.fran,.c-fran{color:var(--pink)}
+.btn{border:0;border-radius:12px;padding:12px 16px;font-family:var(--disp);letter-spacing:.06em;font-size:18px;text-transform:uppercase;background:linear-gradient(135deg,var(--orange),var(--pink));color:#fff;box-shadow:0 4px 18px rgba(255,61,154,.35)}
+.btn.sm{padding:7px 12px;font-size:15px}.btn.ghost{background:transparent;border:1.5px solid var(--line);box-shadow:none}
 .btn.cy{background:linear-gradient(135deg,#1aa6ff,var(--cyan));color:#06121f;box-shadow:0 4px 18px rgba(34,230,255,.35)}
+.btn.gr{background:linear-gradient(135deg,#0a9d68,var(--green));color:#032014}
 .btn.red{background:linear-gradient(135deg,#a3002a,var(--red))}
-.btn:disabled{opacity:.4}.btn.full{width:100%}
+.btn:disabled{opacity:.4}.btn.full{width:100%}.grow{flex:1}
 input,select,textarea{font:inherit;color:var(--text);background:rgba(255,255,255,.08);border:1.5px solid var(--line);border-radius:10px;padding:10px;width:100%;color-scheme:dark}
+select option{background:#1c0638}
 label{display:block;font-size:14px;color:var(--mut);margin:8px 0 3px}
-/* header */
-.top{position:sticky;top:0;z-index:20;background:rgba(20,2,42,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.top .wrap{display:flex;justify-content:space-between;align-items:center;padding:8px 16px}
-.logo{font-family:var(--disp);font-size:22px;letter-spacing:.06em;background:linear-gradient(90deg,var(--yellow),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
-.logo small{display:block;font-size:11px;letter-spacing:.2em;color:var(--mut);-webkit-text-fill-color:var(--mut)}
-.demo{background:var(--yellow);color:#201000;text-align:center;font-family:var(--disp);font-size:13px;letter-spacing:.1em;padding:2px}
-/* nav */
-nav{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(20,2,42,.94);border-top:1px solid var(--line);display:flex;padding-bottom:env(safe-area-inset-bottom)}
-nav button{flex:1;background:none;border:0;padding:12px 4px;font-family:var(--disp);letter-spacing:.06em;font-size:15px;color:var(--mut);position:relative}
+.top{position:sticky;top:0;z-index:20;background:rgba(20,2,42,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:var(--disp);font-size:21px;letter-spacing:.06em;background:linear-gradient(90deg,var(--yellow),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo small{display:block;font-size:11px;letter-spacing:.2em;-webkit-text-fill-color:var(--mut)}
+.demo{background:var(--yellow);color:#201000;text-align:center;font-family:var(--disp);font-size:13px;letter-spacing:.1em}
+nav{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(20,2,42,.95);border-top:1px solid var(--line);display:flex;padding-bottom:env(safe-area-inset-bottom)}
+nav button{flex:1;background:none;border:0;padding:13px 4px;font-family:var(--disp);letter-spacing:.06em;font-size:16px;color:var(--mut);position:relative}
 nav button.on{color:var(--yellow);text-shadow:0 0 10px rgba(255,210,63,.6)}
-nav .dot{position:absolute;top:6px;right:22%;background:var(--red);color:#fff;border-radius:99px;font-size:11px;min-width:18px;padding:0 4px}
-/* countdown */
-.cd{display:flex;gap:8px;justify-content:center;text-align:center}
-.cd div{min-width:64px}.cd b{display:block;font-family:var(--disp);font-weight:400;font-size:38px;line-height:1;color:var(--yellow);text-shadow:0 0 14px rgba(255,138,61,.8)}
-.cd span{font-size:12px;letter-spacing:.15em;color:var(--mut)}
-/* balances */
+nav .dot{position:absolute;top:6px;right:18%;background:var(--red);color:#fff;border-radius:99px;font-size:11px;min-width:18px;padding:0 4px}
+.cdl{text-align:center;font-family:var(--disp);letter-spacing:.06em;font-size:15px;color:var(--yellow)}
+.days{display:flex;gap:6px;overflow-x:auto;padding:2px 0 6px;scrollbar-width:none}
+.days button{flex:0 0 auto;min-width:56px;border:1.5px solid var(--line);background:rgba(0,0,0,.4);border-radius:10px;padding:5px 6px;text-align:center}
+.days b{display:block;font-family:var(--disp);font-weight:400;font-size:20px}.days span{font-size:11px;color:var(--mut)}
+.days button.on{border-color:var(--yellow);background:rgba(255,210,63,.2)}
 .bals{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.bal{border-radius:14px;padding:12px;border:2px solid currentColor;background:rgba(0,0,0,.35)}
-.bal.me{box-shadow:0 0 18px currentColor}
-.bal .n{font-family:var(--disp);letter-spacing:.06em;font-size:16px}
-.bal .v{font-family:var(--disp);font-size:34px;line-height:1.1;color:var(--text)}
-.bal .v.neg{color:var(--red)}
+.bal{border-radius:14px;padding:10px 12px;border:2px solid var(--c);color:var(--c);background:rgba(0,0,0,.35)}
+.bal.me{box-shadow:0 0 16px var(--c)}
+.bal .n{font-family:var(--disp);letter-spacing:.06em;font-size:15px}
+.bal .v{font-family:var(--disp);font-size:32px;line-height:1.1;color:var(--text)}.bal .v small{font-size:15px;color:var(--mut)}
 .bal .s{font-size:13px;color:var(--mut)}
-.ps{text-align:center}
-.ps .big{font-family:var(--disp);font-size:30px;letter-spacing:.05em}
-.ps .timer{font-family:var(--disp);font-size:46px;color:var(--yellow)}
-.ps .live{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--red);animation:blink 1s infinite;margin-right:6px}
+.bar{height:6px;border-radius:9px;background:rgba(255,255,255,.12);margin-top:5px;overflow:hidden}.bar i{display:block;height:100%;background:var(--c)}
+.chrono{text-align:center}
+.chrono .t{font-family:var(--disp);font-size:52px;line-height:1;color:var(--yellow);text-shadow:0 0 16px rgba(255,138,61,.7)}
+.chrono .st{font-family:var(--disp);letter-spacing:.06em;font-size:16px;margin-bottom:4px}
+.live{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--red);animation:blink 1s infinite;margin-right:6px}
 @keyframes blink{50%{opacity:.2}}
+/* grilla */
+.grid{display:flex;flex-direction:column;gap:3px}
+.gr{display:flex;gap:8px;align-items:stretch}
+.gr .tm{width:44px;text-align:right;font-family:var(--disp);font-size:14px;color:var(--mut);padding-top:11px}
+.cell{flex:1;min-height:42px;border-radius:10px;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;gap:6px;border:1.5px dashed var(--line);background:rgba(0,0,0,.28);color:var(--mut);font-size:15px;cursor:pointer;text-align:left}
+.cell.own{border-style:solid;border-color:var(--c);background:color-mix(in srgb,var(--c) 18%,rgba(10,0,25,.7));color:var(--text)}
+.cell.played{background:color-mix(in srgb,var(--c) 38%,rgba(10,0,25,.7))}
+.cell.live{box-shadow:0 0 14px var(--c);animation:pulse 1.6s infinite}
+@keyframes pulse{50%{box-shadow:0 0 4px var(--c)}}
+.cell.past{opacity:.55;cursor:default}.cell.sel{outline:2px solid var(--yellow)}
+.cell.free.go:active{background:rgba(255,210,63,.25)}
+.legend{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--mut);margin-top:6px}.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;vertical-align:-2px}
+.nowtag{color:var(--yellow);font-family:var(--disp);font-size:12px;letter-spacing:.1em}
 .item{border-top:1px solid var(--line);padding:10px 0}.item:first-of-type{border-top:0}
-/* days */
-.days{display:flex;gap:6px;overflow-x:auto;padding:4px 0 8px;scrollbar-width:none}
-.days button{flex:0 0 auto;min-width:54px;border:1.5px solid var(--line);background:rgba(0,0,0,.35);border-radius:10px;padding:5px 6px;text-align:center}
-.days button b{display:block;font-family:var(--disp);font-weight:400;font-size:19px}.days button span{font-size:11px;color:var(--mut)}
-.days button.on{border-color:var(--yellow);background:rgba(255,210,63,.18)}
-.legend{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--mut);margin:6px 0}
-.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:4px}
-/* timeline */
-.tlh,.tl{display:grid;grid-template-columns:36px 1fr 1.35fr 1fr;gap:4px}
-.tlh div{font-family:var(--disp);font-size:13px;letter-spacing:.05em;text-align:center;padding:4px 0}
-.col{position:relative;height:1440px;border-radius:8px;background-color:rgba(255,255,255,.04);
-  background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 59px,rgba(255,255,255,.1) 59px,rgba(255,255,255,.1) 60px)}
-.gut{position:relative;height:1440px}.gut i{position:absolute;right:2px;font-style:normal;font-size:11px;color:var(--mut);transform:translateY(-6px)}
-.blk{position:absolute;left:2px;right:2px;border-radius:6px;font-size:11px;line-height:1.1;padding:2px 4px;overflow:hidden;border:1px solid rgba(255,255,255,.18);color:#fff}
-.blk.sleep{background:rgba(40,40,110,.85)}.blk.busy,.blk.class{background:rgba(90,60,120,.85)}
-.blk.ovbusy{background:rgba(120,30,60,.8);border:1.5px dashed #ff6b8b}.blk.ovfree{background:rgba(20,120,80,.55);border:1.5px dashed var(--green)}
-.col.lauty .blk{border-left:3px solid var(--lauty)}.col.fran .blk{border-left:3px solid var(--fran)}
-.blk.shared{background:linear-gradient(90deg,rgba(34,230,255,.5),rgba(255,61,154,.5));border:0;font-family:var(--disp);letter-spacing:.06em;opacity:.9}
-.blk.t-lauty{background:rgba(34,230,255,.38);border:0}.blk.t-fran{background:rgba(255,61,154,.38);border:0}
-.blk.none{background:repeating-linear-gradient(45deg,rgba(0,0,0,.6) 0 6px,rgba(40,20,60,.6) 6px 12px);border:0;color:var(--mut)}
-.blk.bk{left:22%;right:3px;background:rgba(10,0,25,.92);border-width:2px;z-index:2}
-.blk.bk.lauty{border-color:var(--lauty)}.blk.bk.fran{border-color:var(--fran)}
-.nowl{position:absolute;left:0;right:0;height:2px;background:var(--yellow);box-shadow:0 0 8px var(--yellow);z-index:5;pointer-events:none}
-/* keypad */
+.tag{font-size:11px;padding:1px 6px;border-radius:6px;background:rgba(255,255,255,.15);margin-left:4px}
+.seg{display:flex;gap:6px}.seg button{flex:1;padding:9px;border-radius:10px;border:1.5px solid var(--line);background:rgba(255,255,255,.06);font-family:var(--disp);letter-spacing:.05em}
+.seg button.on{border-color:var(--yellow);background:rgba(255,210,63,.2);color:var(--yellow)}
+.pill{position:fixed;left:12px;right:12px;bottom:64px;z-index:25;max-width:536px;margin:0 auto;background:var(--yellow);color:#201000;border-radius:12px;padding:10px 14px;font-family:var(--disp);letter-spacing:.05em;text-align:center;box-shadow:0 6px 24px rgba(0,0,0,.5)}
+/* login */
 .login{min-height:100vh;display:flex;flex-direction:column;justify-content:center}
 .pad{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:340px;margin:16px auto}
 .pad button{aspect-ratio:1.25;border-radius:16px;border:2px solid rgba(255,255,255,.25);background:rgba(10,0,25,.7);font-family:var(--disp);font-size:36px}
@@ -102,36 +90,24 @@ nav .dot{position:absolute;top:6px;right:22%;background:var(--red);color:#fff;bo
 .dots{display:flex;gap:14px;justify-content:center;height:22px;margin:10px 0}
 .dots i{width:18px;height:18px;border-radius:50%;border:2px solid var(--yellow)}.dots i.f{background:var(--yellow);box-shadow:0 0 10px var(--yellow)}
 .shake{animation:shake .4s}@keyframes shake{25%{transform:translateX(-10px)}75%{transform:translateX(10px)}}
-/* modal / flash / toast */
-#modal{position:fixed;inset:0;z-index:60;display:none;background:rgba(5,0,15,.75);align-items:flex-end;justify-content:center}
-#modal.on{display:flex}
+#modal{position:fixed;inset:0;z-index:60;display:none;background:rgba(5,0,15,.75);align-items:flex-end;justify-content:center}#modal.on{display:flex}
 .sheet{width:100%;max-width:560px;max-height:92vh;overflow:auto;background:#1c0638;border:1px solid var(--line);border-radius:20px 20px 0 0;padding:16px 16px calc(20px + env(safe-area-inset-bottom))}
-.est{margin-top:10px;padding:10px;border-radius:10px;background:rgba(255,255,255,.07);font-size:15px}
-.est b{color:var(--yellow)}
 #flash{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:20px}
 #flash.on{display:flex;animation:fin .25s}@keyframes fin{from{opacity:0}}
-#flash .t{font-family:var(--disp);font-size:clamp(44px,15vw,96px);letter-spacing:.06em;line-height:1}
-#flash .s{font-size:20px;margin-top:10px;max-width:420px}
+#flash .t{font-family:var(--disp);font-size:clamp(44px,15vw,96px);letter-spacing:.06em;line-height:1}#flash .s{font-size:20px;margin-top:10px;max-width:420px}
 #flash.passed{background:rgba(10,0,25,.82)}#flash.passed .t{color:var(--yellow);text-shadow:0 0 30px var(--orange),0 4px 0 #a04400}
-#flash.wasted{background:rgba(0,0,0,.78);backdrop-filter:grayscale(1)}#flash.wasted .t{color:var(--red);text-shadow:0 0 30px #600,0 4px 0 #300;animation:pop .5s}
+#flash.wasted{background:rgba(0,0,0,.78)}#flash.wasted .t{color:var(--red);text-shadow:0 0 30px #600,0 4px 0 #300;animation:pop .5s}
 @keyframes pop{from{transform:scale(1.8);opacity:0}}
-#toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%);z-index:80;background:#fff;color:#14022a;padding:10px 16px;border-radius:12px;font-weight:700;max-width:90vw;display:none;box-shadow:0 6px 24px rgba(0,0,0,.5)}
-#toast.on{display:block}
-.seg{display:flex;gap:6px}.seg button{flex:1;padding:9px;border-radius:10px;border:1.5px solid var(--line);background:rgba(255,255,255,.06);font-family:var(--disp);letter-spacing:.05em}
-.seg button.on{border-color:var(--yellow);background:rgba(255,210,63,.2);color:var(--yellow)}
-.tag{font-size:11px;padding:1px 6px;border-radius:6px;background:rgba(255,255,255,.15);margin-left:4px}
-details summary{cursor:pointer;color:var(--yellow);font-family:var(--disp);letter-spacing:.05em}
+#toast{position:fixed;left:50%;bottom:100px;transform:translateX(-50%);z-index:80;background:#fff;color:#14022a;padding:10px 16px;border-radius:12px;font-weight:700;max-width:90vw;display:none;box-shadow:0 6px 24px rgba(0,0,0,.5)}#toast.on{display:block}
 </style>
 </head>
 <body>
 <div id="app"></div>
 <nav id="nav" style="display:none"></nav>
-<div id="modal"></div>
-<div id="flash"></div>
-<div id="toast"></div>
+<div id="modal"></div><div id="flash"></div><div id="toast"></div>
 
 <!-- Config de Firebase: en Vercel la genera build.js (firebase-config.js) desde variables de entorno.
-     Si no existe y apiKey queda vacío → modo DEMO con localStorage. También se puede pegar acá para probar local. -->
+     Sin config (apiKey vacío) → modo DEMO con localStorage. -->
 <script>
 var firebaseConfig = { apiKey: "", authDomain: "", projectId: "", storageBucket: "", messagingSenderId: "", appId: "" };
 </script>
@@ -141,26 +117,31 @@ var firebaseConfig = { apiKey: "", authDomain: "", projectId: "", storageBucket:
 (() => {
 'use strict';
 
-/* ===================== TIEMPO (America/Buenos_Aires = UTC-3 fijo) ===================== */
-const OFF = -3 * 3600000, MIN = 60000, SLOT = 15 * MIN, DAY = 86400000;
+/* ================= TIEMPO (America/Buenos_Aires = UTC-3 fijo) ================= */
+const OFF = -3 * 3600000, MIN = 60000, DAY = 86400000, BH = 30 * MIN, TOL = 15 * MIN, BUDGET = 12, NB = 48;
 const mk = (y, m, d, h = 0, mi = 0) => Date.UTC(y, m - 1, d, h, mi) - OFF;
-const LAUNCH = mk(2026, 11, 19, 0, 0);
+const LAUNCH = mk(2026, 11, 19);
 const dayStart = ts => Math.floor((ts + OFF) / DAY) * DAY - OFF;
-const floor15 = ts => Math.floor(ts / SLOT) * SLOT;
 const LD = ts => new Date(ts + OFF);
 const dkey = ts => LD(ts).toISOString().slice(0, 10);
+const dayTs = key => { const [y, m, d] = key.split('-').map(Number); return mk(y, m, d); };
 const dow = ts => LD(ts).getUTCDay();
-const minOfDay = ts => ((ts + OFF) % DAY) / MIN;
 const pad = n => String(n).padStart(2, '0');
 const hhmm = ts => pad(LD(ts).getUTCHours()) + ':' + pad(LD(ts).getUTCMinutes());
-const DOWN = ['DOM', 'LUN', 'MAR', 'MIÉ', 'JUE', 'VIE', 'SÁB'];
-const dLbl = ts => DOWN[dow(ts)] + ' ' + LD(ts).getUTCDate() + '/' + (LD(ts).getUTCMonth() + 1);
-const parseDT = (date, time) => { const [y, m, d] = date.split('-').map(Number), [h, mi] = time.split(':').map(Number); return mk(y, m, d, h, mi); };
-const fmtH = m => { const s = m < -0.5 ? '-' : ''; m = Math.round(Math.abs(m)); return s + Math.floor(m / 60) + 'h ' + pad(m % 60) + 'm'; };
+const DOWS = ['DOM', 'LUN', 'MAR', 'MIÉ', 'JUE', 'VIE', 'SÁB'];
+const DOWL = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+const dLbl = ts => DOWS[dow(ts)] + ' ' + LD(ts).getUTCDate() + '/' + (LD(ts).getUTCMonth() + 1);
+const dLong = ts => DOWL[dow(ts)] + ' ' + LD(ts).getUTCDate() + '/' + (LD(ts).getUTCMonth() + 1);
+const bStart = (day, idx) => dayTs(day) + idx * BH;
+const bid = (day, idx) => day + '_' + idx;
+const idxLbl = i => i >= NB ? '00:00' : pad(Math.floor(i / 2)) + ':' + (i % 2 ? '30' : '00');
 const r2 = n => Math.round(n * 100) / 100;
+const fmtHr = h => (Math.round(h * 2) / 2) + 'h';
+const fmtDur = ms => { const m = Math.round(Math.abs(ms) / MIN); return Math.floor(m / 60) + 'h ' + pad(m % 60) + 'm'; };
+const fmtT = ms => { const s = Math.max(0, Math.floor(ms / 1000)); return pad(Math.floor(s / 3600)) + ':' + pad(Math.floor(s % 3600 / 60)) + ':' + pad(s % 60); };
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-/* ===================== HASH (SHA-256 puro, no depende de https) ===================== */
+/* ================= SHA-256 (PIN → hash) ================= */
 function sha256(ascii) {
   const rr = (v, a) => (v >>> a) | (v << (32 - a)), mp = Math.pow, mw = mp(2, 32);
   let result = ''; const words = [], abl = ascii.length * 8;
@@ -183,115 +164,87 @@ function sha256(ascii) {
   for (let i = 0; i < 8; i++) for (let j = 3; j + 1; j--) { const b = (hash[i] >> (j * 8)) & 255; result += ((b < 16) ? 0 : '') + b.toString(16); }
   return result;
 }
-
-/* ===================== JUGADORES ===================== */
 const SALT = 'gta6-alcancia:';
 const PLAYERS = {
-  lauty: { id: 'lauty', name: 'LAUTY', full: 'Lautaro', hash: '381d32b2014f3df814b76d932edb991e6cdcfed0a028fe247ed26b88b932332c' },
-  fran:  { id: 'fran',  name: 'FRAN',  full: 'Francisco', hash: 'b9dce5b9467f3b585529257e6170f952eb85e715b12925342561938a6f46dc0e' }
+  lauty: { id: 'lauty', name: 'LAUTY', hash: '381d32b2014f3df814b76d932edb991e6cdcfed0a028fe247ed26b88b932332c' },
+  fran: { id: 'fran', name: 'FRAN', hash: 'b9dce5b9467f3b585529257e6170f952eb85e715b12925342561938a6f46dc0e' }
 };
 const other = p => p === 'lauty' ? 'fran' : 'lauty';
-const pchip = p => `<span class="chip ${p}">${PLAYERS[p]?.name || '?'}</span>`;
+const chip = p => `<span class="chip ${p}">${PLAYERS[p]?.name || '?'}</span>`;
 
-/* ===================== HORARIOS ===================== */
-const HOLIDAYS = ['2026-11-23'];
-const LAUTY_BUSY_UNTIL = '2026-11-24';
-const FRAN_SKIP = ['2026-11-19'];            // jue 19/11 no hay profe particular
-const hm = (h, m = 0) => h * 60 + m;
-const FRAN_WEEK = {
-  1: [[hm(14, 30), hm(16, 30), 'Gimnasia + gym'], [hm(19, 30), hm(21, 30), 'Inglés']],
-  2: [[hm(17), hm(18), 'Profe particular']],
-  3: [[hm(14), hm(16), 'Gimnasia + gym'], [hm(19, 30), hm(21, 30), 'Inglés']],
-  4: [[hm(17), hm(18), 'Profe particular']],
-  5: [[hm(15), hm(16, 30), 'Gimnasio']]
-};
-function baseBusy(p, ts) {
-  const k = dkey(ts), d = dow(ts), m = minOfDay(ts), hol = HOLIDAYS.includes(k), wk = d >= 1 && d <= 5;
-  if (wk && !hol) {
-    if (m >= hm(2) && m < hm(7)) return { kind: 'sleep', label: 'Durmiendo' };
-    if (m >= hm(7) && m < hm(12)) return { kind: 'busy', label: 'Ocupado (mañana)' };
+/* ================= ESTADO + LÓGICA DE NEGOCIO ================= */
+const S = { me: null, tab: 'day', day: null, pin: '', ready: false, loaded: {}, blocks: [], plays: [], trades: [], live: {},
+  swap: { give: [], get: [] }, trKind: 'gift', trDir: 'give', scrolled: false };
+const COLS = ['blocks', 'plays', 'trades', 'live'];
+
+let _bm = null, _bmV = -1, V = 0;
+const bmap = () => { if (_bmV !== V) { _bm = new Map(S.blocks.map(b => [bid(b.day, b.idx), b])); _bmV = V; } return _bm; };
+
+// Presupuesto del día = 12 h ± tradeos aceptados (regalos y préstamos)
+function budget(p, day) {
+  let h = BUDGET;
+  for (const t of S.trades) {
+    if (t.status !== 'accepted' || t.type === 'swap') continue;
+    const s = p === t.from ? -1 : p === t.to ? 1 : 0; if (!s) continue;
+    if (t.day === day) h += s * t.hours;
+    if (t.type === 'loan' && t.repayDay === day) h -= s * t.hours;     // devolución: sentido inverso
   }
-  if (p === 'lauty') {
-    if (k <= LAUTY_BUSY_UNTIL && m >= hm(17) && m < hm(22)) return { kind: 'busy', label: 'Ocupado' };
-  } else if (!hol && !FRAN_SKIP.includes(k)) {
-    for (const [a, b, label] of (FRAN_WEEK[d] || [])) if (m >= a && m < b) return { kind: 'class', label };
+  return h;
+}
+const used = (p, day) => S.blocks.filter(b => b.day === day && b.player === p).length / 2;
+const avail = (p, day) => budget(p, day) - used(p, day);
+
+function playedMs(b, now) {
+  const st = bStart(b.day, b.idx), en = st + BH; let ms = 0;
+  for (const p of S.plays) if (p.player === b.player) ms += Math.max(0, Math.min(p.end, en) - Math.max(p.start, st));
+  const lv = S.live[b.player]; if (lv && lv.state === 'running') ms += Math.max(0, Math.min(now, en) - Math.max(lv.startedAt, st));
+  return ms;
+}
+function realMs(p, now = Date.now()) {
+  let ms = S.plays.filter(x => x.player === p).reduce((a, x) => a + (x.end - x.start), 0);
+  const lv = S.live[p]; if (lv && lv.state === 'running') ms += now - lv.startedAt;
+  return ms;
+}
+// estado visual de un bloque ocupado
+function blockState(b, now) {
+  const st = bStart(b.day, b.idx), en = st + BH, pm = playedMs(b, now), lv = S.live[b.player];
+  if (en <= now) return pm > 0 ? { k: 'played', label: `Jugado ${Math.round(pm / MIN)} min` } : { k: 'missed', label: 'Sin usar' };
+  if (st <= now) {
+    if (lv && lv.state === 'running') return { k: 'live', label: `En curso ▶ ${Math.round(pm / MIN)} min` };
+    if (lv && lv.state === 'paused') return { k: 'paused', label: 'En pausa ⏸' };
+    return { k: 'reserved', label: `Reservado · se libera ${hhmm(st + TOL)}` };
   }
-  return null;
+  return { k: 'reserved', label: 'Reservado' };
 }
+const reservable = (day, idx, now) => now < bStart(day, idx) + TOL;
+const future = (b, now) => bStart(b.day, b.idx) > now;
 
-/* ===================== ESTADO ===================== */
-const S = { me: null, tab: 'home', day: null, pin: '', ready: false, filter: 'all', trKind: 'give', scrolled: false,
-  bookings: [], sessions: [], trades: [], claims: [], overrides: [], config: null, live: null };
-const factor = () => { const f = S.config && S.config.exclusiveFactor; return (typeof f === 'number' ? f : 0) / 100; };
-
-function slotInfo(p, ts, ovs = S.overrides) {
-  let ov = null;
-  for (const o of ovs) if (o.player === p && ts >= o.start && ts < o.end && (!ov || (o.createdAt || 0) >= (ov.createdAt || 0))) ov = o;
-  if (ov) return ov.type === 'busy' ? { free: false, kind: 'ovbusy', label: 'No estoy (manual)' } : { free: true, kind: 'ovfree', label: 'Libre (manual)' };
-  const b = baseBusy(p, ts);
-  return b ? { free: false, ...b } : { free: true, kind: null, label: '' };
-}
-// 'shared' | 'lauty' (exclusiva de Lauty) | 'fran' | 'none'
-function slotType(ts, ovs = S.overrides) {
-  const l = slotInfo('lauty', ts, ovs).free, f = slotInfo('fran', ts, ovs).free;
-  return l && f ? 'shared' : l ? 'lauty' : f ? 'fran' : 'none';
-}
-function analyze(p, start, end, fx = factor()) {
-  let sh = 0, ex = 0, ot = 0, cost = 0;
-  for (let t = floor15(start); t < end; t += SLOT) {
-    const ov = (Math.min(end, t + SLOT) - Math.max(start, t)) / MIN; if (ov <= 0) continue;
-    const ty = slotType(t); let w = 1;
-    if (ty === 'shared') sh += ov; else if (ty === p) { ex += ov; w = fx; } else ot += ov;
-    if (t + SLOT <= LAUNCH) w = 0;   // antes del lanzamiento todavía no hay alcancía: juega gratis
-    cost += ov * w;
-  }
-  const minutes = (end - start) / MIN;
-  return { minutes: r2(minutes), minutesShared: r2(sh), minutesExclusive: r2(ex), cost: r2(cost) };
-}
-const sharedMinutes = ds => { let n = 0; for (let t = ds; t < ds + DAY; t += SLOT) if (slotType(t) === 'shared') n += 15; return n; };
-
-function balances(now = Date.now()) {
-  const r = { lauty: { dep: 0, spent: 0, tr: 0, run: 0 }, fran: { dep: 0, spent: 0, tr: 0, run: 0 } };
-  for (let ds = LAUNCH; ds <= dayStart(now); ds += DAY) { const h = sharedMinutes(ds) / 2; r.lauty.dep += h; r.fran.dep += h; }
-  S.sessions.forEach(s => { if (r[s.player]) r[s.player].spent += s.cost || 0; });
-  S.trades.filter(t => t.status === 'accepted').forEach(t => { if (r[t.from] && r[t.to]) { r[t.from].tr -= t.minutes; r[t.to].tr += t.minutes; } });
-  if (S.live && S.live.player) r[S.live.player].run = analyze(S.live.player, S.live.since, now).cost;
-  for (const p in r) r[p].total = r[p].dep - r[p].spent + r[p].tr - r[p].run;
-  return r;
-}
-function weekShared(p, ts) {
-  const ws = dayStart(ts) - ((dow(ts) + 6) % 7) * DAY;
-  return S.sessions.filter(s => s.player === p && s.start >= ws && s.start < ws + 7 * DAY).reduce((a, s) => a + (s.minutesShared || 0), 0);
-}
-function priority(ts = Date.now()) {
-  const l = weekShared('lauty', ts), f = weekShared('fran', ts);
-  return { lauty: l, fran: f, winner: l === f ? null : l < f ? 'lauty' : 'fran' };
-}
-const TYPE_LBL = { shared: 'COMPARTIDA', lauty: 'EXCLUSIVA LAUTY', fran: 'EXCLUSIVA FRAN', none: 'NADIE' };
-
-/* ===================== STORE (Firebase o demo localStorage) ===================== */
+/* ================= STORE (Firebase o demo localStorage) ================= */
 const DEMO = !firebaseConfig.apiKey;
-const COLS = ['bookings', 'sessions', 'trades', 'claims', 'overrides'];
 let store;
+const rid = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
 function demoStore() {
-  const KEY = 'gta6.demo.v1', ls = new Set();
-  let d = { bookings: [], sessions: [], trades: [], claims: [], overrides: [], config: null, live: null };
+  const KEY = 'gta6.demo.v2', ls = new Set();
+  let d = { blocks: [], plays: [], trades: [], live: [] };
   const load = () => { try { Object.assign(d, JSON.parse(localStorage.getItem(KEY) || '{}')); } catch (e) { } };
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(d)); } catch (e) { } };
   const emit = () => ls.forEach(f => f());
   load(); window.addEventListener('storage', e => { if (e.key === KEY) { load(); emit(); } });
-  const id = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
+  const apply = o => {
+    const a = d[o.col];
+    if (o.op === 'set') { const i = a.findIndex(x => x.id === o.id); const v = { ...o.data, id: o.id }; i < 0 ? a.push(v) : a[i] = v; }
+    else if (o.op === 'upd') { const x = a.find(x => x.id === o.id); if (x) Object.assign(x, o.data); }
+    else if (o.op === 'del') d[o.col] = a.filter(x => x.id !== o.id);
+  };
   return {
-    async init() { },
-    watch(name, cb) { const f = () => cb(COLS.includes(name) ? d[name].slice() : d[name]); ls.add(f); setTimeout(f, 0); },
-    async add(c, o) { d[c].push({ id: id(), ...o }); save(); emit(); },
-    async upd(c, i, p) { const x = d[c].find(z => z.id === i); if (x) Object.assign(x, p); save(); emit(); },
-    async del(c, i) { d[c] = d[c].filter(z => z.id !== i); save(); emit(); },
-    async setMeta(n, o) { d[n] = o; save(); emit(); }
+    async init() { }, newId: rid,
+    watch(col, cb) { const f = () => cb(d[col].map(x => ({ ...x }))); ls.add(f); setTimeout(f, 0); },
+    async batch(ops) { ops.forEach(apply); save(); emit(); },
+    async createIfAbsent(col, id, data) { if (d[col].some(x => x.id === id)) throw new Error('Ese bloque ya está ocupado'); apply({ op: 'set', col, id, data }); save(); emit(); }
   };
 }
 function fbStore() {
-  const V = '10.12.2', base = `https://www.gstatic.com/firebasejs/${V}/`;
+  const base = 'https://www.gstatic.com/firebasejs/10.12.2/';
   const load = src => new Promise((res, rej) => { const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = () => rej(new Error('No cargó ' + src)); document.head.appendChild(s); });
   let db;
   return {
@@ -299,346 +252,353 @@ function fbStore() {
       await load(base + 'firebase-app-compat.js'); await load(base + 'firebase-auth-compat.js'); await load(base + 'firebase-firestore-compat.js');
       firebase.initializeApp(firebaseConfig); await firebase.auth().signInAnonymously(); db = firebase.firestore();
     },
-    watch(name, cb) {
-      const err = e => toast('Error Firebase: ' + e.message);
-      if (COLS.includes(name)) db.collection(name).onSnapshot(s => cb(s.docs.map(x => ({ id: x.id, ...x.data() }))), err);
-      else db.doc('meta/' + name).onSnapshot(x => cb(x.exists ? x.data() : null), err);
+    newId: () => db.collection('x').doc().id,
+    watch(col, cb) { db.collection(col).onSnapshot(s => cb(s.docs.map(x => ({ ...x.data(), id: x.id }))), e => toast('Firebase: ' + e.message)); },
+    batch(ops) {
+      const b = db.batch();
+      ops.forEach(o => { const r = db.collection(o.col).doc(o.id); o.op === 'set' ? b.set(r, o.data) : o.op === 'upd' ? b.update(r, o.data) : b.delete(r); });
+      return b.commit();
     },
-    add: (c, o) => db.collection(c).add(o),
-    upd: (c, i, p) => db.collection(c).doc(i).update(p),
-    del: (c, i) => db.collection(c).doc(i).delete(),
-    setMeta: (n, o) => db.doc('meta/' + n).set(o)
+    createIfAbsent(col, id, data) {
+      const r = db.collection(col).doc(id);
+      return db.runTransaction(async tx => { if ((await tx.get(r)).exists) throw new Error('Ese bloque ya está ocupado'); tx.set(r, data); });
+    }
   };
 }
-const act = async (fn, okMsg) => { try { await fn(); if (okMsg) toast(okMsg); return true; } catch (e) { toast('Error: ' + (e.message || e)); return false; } };
+const act = async (fn, ok) => { try { await fn(); if (ok) toast(ok); return true; } catch (e) { toast('Error: ' + (e.message || e)); return false; } };
 
-/* ===================== UI HELPERS ===================== */
+/* ================= HELPERS UI ================= */
 const $ = s => document.querySelector(s);
 let toastT, flashT;
-function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), 2800); }
+function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), 3000); }
 function flash(kind, sub) {
   const f = $('#flash'); f.className = 'on ' + kind;
   f.innerHTML = `<div class="t">${kind === 'passed' ? 'MISSION<br>PASSED' : 'WASTED'}</div><div class="s">${esc(sub || '')}</div>`;
   clearTimeout(flashT); flashT = setTimeout(() => f.className = '', 2600); f.onclick = () => f.className = '';
 }
 function modal(html) { const m = $('#modal'); m.innerHTML = `<div class="sheet">${html}</div>`; m.classList.add('on'); }
-function closeModal() { $('#modal').classList.remove('on'); $('#modal').innerHTML = ''; if (window.GTA) render(); }
+function closeModal() { $('#modal').classList.remove('on'); $('#modal').innerHTML = ''; render(); }
 const val = id => { const e = document.getElementById(id); return e ? e.value : ''; };
 
-/* ===================== VISTAS ===================== */
+function rangesText(keys) {
+  const it = keys.map(k => { const [d, i] = k.split('_'); return { d, i: +i }; }).sort((a, b) => a.d < b.d ? -1 : a.d > b.d ? 1 : a.i - b.i);
+  const out = []; let g = null;
+  for (const x of it) { if (g && g.d === x.d && g.e === x.i) g.e++; else { g = { d: x.d, s: x.i, e: x.i + 1 }; out.push(g); } }
+  return out.map(g => `${dLbl(dayTs(g.d))} ${idxLbl(g.s)}–${idxLbl(g.e)}`).join(', ');
+}
+
+/* ================= VISTAS ================= */
 function cdHTML() {
   const ms = LAUNCH - Date.now();
-  if (ms <= 0) return `<div class="ps"><div class="big c-fran">¡YA SALIÓ GTA 6!</div></div>`;
-  const s = Math.floor(ms / 1000), d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60), x = s % 60;
-  return `<div class="cd"><div><b>${d}</b><span>DÍAS</span></div><div><b>${pad(h)}</b><span>HS</span></div><div><b>${pad(m)}</b><span>MIN</span></div><div><b>${pad(x)}</b><span>SEG</span></div></div>`;
+  if (ms <= 0) return '🔥 ¡YA SALIÓ GTA 6!';
+  const s = Math.floor(ms / 1000);
+  return `GTA 6 en ${Math.floor(s / 86400)}d ${pad(Math.floor(s % 86400 / 3600))}:${pad(Math.floor(s % 3600 / 60))}:${pad(s % 60)}`;
 }
 function vLogin() {
-  return `<div class="wrap login">
-    <div style="text-align:center"><div class="logo" style="font-size:40px">ALCANCÍA DE HORAS<small>GTA 6 · LA PLAY DE LOS HERMANOS</small></div></div>
-    <div class="card" id="cdl" style="margin-top:18px"><h2 style="text-align:center">Faltan para el lanzamiento</h2><div id="cd">${cdHTML()}</div><div class="mut" style="text-align:center;margin-top:6px">Jueves 19/11/2026 · 00:00 (Buenos Aires)</div></div>
-    <div class="dots" id="dots">${'<i></i>'.repeat(4)}</div>
-    <div class="mut" style="text-align:center">Ingresá tu PIN</div>
-    <div class="pad">${[1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => `<button data-act="key" data-k="${n}">${n}</button>`).join('')}<button data-act="key" data-k="c" style="font-size:22px">BORRAR</button><button data-act="key" data-k="0">0</button><button data-act="key" data-k="x" style="font-size:22px;visibility:hidden">·</button></div>
-    ${DEMO ? '<div class="mut" style="text-align:center">Modo demo (sin Firebase): datos solo en este navegador</div>' : ''}</div>`;
-}
-function balCard(p, b, me) {
-  const x = b[p], neg = x.total < -0.5;
-  return `<div class="bal c-${p} ${me ? 'me' : ''}"><div class="n">${PLAYERS[p].name}${me ? ' · VOS' : ''}</div>
-    <div class="v ${neg ? 'neg' : ''}" data-bal="${p}">${fmtH(x.total)}</div>
-    <div class="s">+${fmtH(x.dep)} dep · −${fmtH(x.spent)} jugado${Math.abs(x.tr) > .5 ? ` · ${x.tr > 0 ? '+' : '−'}${fmtH(Math.abs(x.tr))} trades` : ''}</div></div>`;
-}
-function vHome() {
-  const me = S.me, b = balances(), now = Date.now(), live = S.live && S.live.player ? S.live : null, ty = slotType(now);
-  const myRate = ty === 'shared' ? '100%' : ty === me ? Math.round(factor() * 100) + '%' : '100%';
-  const pr = priority(now);
-  const pendT = S.trades.filter(t => t.status === 'pending' && t.createdBy !== me && (t.from === me || t.to === me));
-  const pendC = S.claims.filter(c => c.status === 'pending' && c.owner === me && S.bookings.some(x => x.id === c.bookingId));
-  const mineC = S.claims.filter(c => c.by === me && c.status === 'pending');
-  const next = S.bookings.filter(x => x.end > now).sort((a, c) => a.start - c.start).slice(0, 8);
-  return `
-  <div class="card"><h2>Cuenta regresiva</h2><div id="cd">${cdHTML()}</div></div>
-  <div class="card"><h2>Saldo de horas</h2><div class="bals">${balCard('lauty', b, me === 'lauty')}${balCard('fran', b, me === 'fran')}</div>
-    ${now < LAUNCH ? '<div class="mut" style="margin-top:8px">Los depósitos arrancan el jueves 19/11 a las 00:00. Hasta entonces jugar es gratis.</div>' : '<div class="mut" style="margin-top:8px">Cada día se deposita a cada uno la mitad de las horas compartidas.</div>'}</div>
-  <div class="card ps"><h2>Estado de la PS5</h2>
-    ${live ? `<div class="big c-${live.player}"><span class="live"></span>${PLAYERS[live.player].name} JUGANDO</div><div class="timer" id="timer">${fmtT(now - live.since)}</div>
-       ${live.player === me ? `<button class="btn red full" data-act="end">Terminar</button>` : `<div class="mut">Esperá a que termine ${PLAYERS[live.player].name}</div>`}`
-    : `<div class="big c-fran" style="color:var(--green)">LIBRE</div>
-       <div class="mut" style="margin:6px 0 10px">Ahora: franja <b>${TYPE_LBL[ty]}</b> · a vos te cuesta ${myRate}</div>
-       <button class="btn cy full" data-act="start">Arrancar</button>`}
-  </div>
-  <div class="card"><h2>Pendientes por responder ${pendT.length + pendC.length ? `(${pendT.length + pendC.length})` : ''}</h2>
-    ${pendC.map(c => { const bk = S.bookings.find(x => x.id === c.bookingId); return `<div class="item"><div>${pchip(c.by)} reclama tu turno <b>${dLbl(bk.start)} ${hhmm(bk.start)}–${hhmm(bk.end)}</b></div>
-      <div class="mut">Prioridad esta semana: ${pr.winner ? PLAYERS[pr.winner].name + ' (jugó menos compartidas)' : 'empate'}</div>
-      <div class="row" style="margin-top:6px"><button class="btn sm" data-act="cede" data-id="${c.id}">Ceder</button><button class="btn sm ghost" data-act="rejectClaim" data-id="${c.id}">Rechazar</button></div></div>`; }).join('')}
-    ${pendT.map(t => tradeRow(t, true)).join('')}
-    ${mineC.map(c => { const bk = S.bookings.find(x => x.id === c.bookingId); return bk ? `<div class="item mut">Esperando respuesta de ${PLAYERS[c.owner].name} por ${dLbl(bk.start)} ${hhmm(bk.start)}</div>` : ''; }).join('')}
-    ${pendT.length + pendC.length + mineC.length ? '' : '<div class="mut">Nada pendiente 👌</div>'}</div>
-  <div class="card"><h2>Próximos turnos</h2>${next.length ? next.map(x => `<div class="item row sp"><div>${pchip(x.player)} <b>${dLbl(x.start)}</b> ${hhmm(x.start)}–${hhmm(x.end)}</div><span class="mut">${fmtH(analyze(x.player, x.start, x.end).cost)}</span></div>`).join('') : '<div class="mut">No hay turnos reservados.</div>'}</div>
-  <div class="card"><h2>Prioridad semanal</h2><div class="mut">En choques gana quien jugó menos minutos compartidos en la semana (lun–dom).</div>
-    <div class="row sp" style="margin-top:6px"><span>${pchip('lauty')} ${fmtH(pr.lauty)}</span><span>${pchip('fran')} ${fmtH(pr.fran)}</span></div>
-    <div style="margin-top:6px">${pr.winner ? 'Prioridad: ' + pchip(pr.winner) : 'Empate'}</div></div>`;
-}
-const fmtT = ms => { const s = Math.max(0, Math.floor(ms / 1000)); return pad(Math.floor(s / 3600)) + ':' + pad(Math.floor(s % 3600 / 60)) + ':' + pad(s % 60); };
-
-function tradeRow(t, actions) {
-  const me = S.me, isMine = t.createdBy === me;
-  const txt = t.createdBy === t.from ? `${pchip(t.from)} regala <b>${fmtH(t.minutes)}</b> a ${pchip(t.to)}` : `${pchip(t.to)} pide <b>${fmtH(t.minutes)}</b> a ${pchip(t.from)}`;
-  const st = { pending: 'pendiente', accepted: 'aceptado', rejected: 'rechazado' }[t.status];
-  return `<div class="item"><div>${txt} <span class="tag">${st}</span></div><div class="mut">“${esc(t.note)}” · ${dLbl(t.createdAt || Date.now())}</div>
-   ${t.status === 'pending' ? (isMine ? `<button class="btn sm ghost" style="margin-top:6px" data-act="tradeNo" data-id="${t.id}">Cancelar</button>` : `<div class="row" style="margin-top:6px"><button class="btn sm" data-act="tradeOk" data-id="${t.id}">Aceptar</button><button class="btn sm ghost" data-act="tradeNo" data-id="${t.id}">Rechazar</button></div>`) : ''}</div>`;
+  return `<div class="wrap login"><div style="text-align:center"><div class="logo" style="font-size:40px">ALCANCÍA DE HORAS<small>GTA 6 · UNA CONSOLA, DOS HERMANOS</small></div></div>
+  <div class="cdl" id="cd" style="margin:14px 0">${cdHTML()}</div>
+  <div class="dots" id="dots">${'<i></i>'.repeat(4)}</div><div class="mut" style="text-align:center">Ingresá tu PIN</div>
+  <div class="pad">${[1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => `<button data-act="key" data-k="${n}">${n}</button>`).join('')}<button data-act="key" data-k="c" style="font-size:22px">BORRAR</button><button data-act="key" data-k="0">0</button><span></span></div>
+  ${DEMO ? '<div class="mut" style="text-align:center">Modo demo (sin Firebase): datos solo en este navegador</div>' : ''}</div>`;
 }
 
-function vTurnos() {
+function chronoCard() {
+  const me = S.me, ot = other(me), now = Date.now(), lv = S.live[me], ol = S.live[ot];
+  const el = lv ? (lv.accMs || 0) + (lv.state === 'running' ? now - lv.startedAt : 0) : 0;
+  const otStatus = !ol ? 'libre' : ol.state === 'running' ? `jugando ▶ ${fmtT((ol.accMs || 0) + now - ol.startedAt)}` : 'en pausa ⏸';
+  const d = dkey(now), idx = Math.floor((now - dayStart(now)) / BH), cb = bmap().get(bid(d, idx));
+  const hint = cb ? `Bloque de ahora (${idxLbl(idx)}–${idxLbl(idx + 1)}): ${chip(cb.player)}` : `Bloque de ahora (${idxLbl(idx)}–${idxLbl(idx + 1)}): libre`;
+  const btns = !lv ? `<button class="btn cy full" data-act="cStart" ${ol && ol.state === 'running' ? 'disabled' : ''}>Iniciar</button>`
+    : lv.state === 'running' ? `<div class="row"><button class="btn grow" data-act="cPause">Pausar</button><button class="btn red grow" data-act="cEnd">Terminar sesión</button></div>`
+      : `<div class="row"><button class="btn cy grow" data-act="cStart">Reanudar</button><button class="btn red grow" data-act="cEnd">Terminar sesión</button></div>`;
+  return `<div class="card chrono"><h2>Cronómetro en vivo</h2>
+    <div class="st ${lv ? 'c-' + me : ''}">${lv ? (lv.state === 'running' ? '<span class="live"></span>JUGANDO' : 'EN PAUSA') : 'SIN SESIÓN'}</div>
+    <div class="t" id="timer">${fmtT(el)}</div>
+    <div class="mut" style="margin:6px 0 10px">${chip(ot)} ${otStatus}<br>${hint}</div>${btns}</div>`;
+}
+
+function statsHTML(now) {
+  const l = realMs('lauty', now), f = realMs('fran', now), d = l - f;
+  const diff = Math.abs(d) < MIN ? 'Van parejos' : `${chip(d > 0 ? 'lauty' : 'fran')} lleva <b>+${fmtDur(d)}</b> reales más que ${chip(d > 0 ? 'fran' : 'lauty')}`;
+  return `<div class="mut" style="margin-top:10px">Horas reales jugadas desde el día 1</div>
+  <div class="row sp"><span>${chip('lauty')} <b>${fmtDur(l)}</b></span><span>${chip('fran')} <b>${fmtDur(f)}</b></span></div><div style="margin-top:4px">${diff}</div>`;
+}
+function balCard(p, day) {
+  const b = budget(p, day), u = used(p, day), a = b - u, pct = Math.max(0, Math.min(100, a / Math.max(b, .5) * 100));
+  return `<div class="bal ${p} ${S.me === p ? 'me' : ''}"><div class="n">${PLAYERS[p].name}${S.me === p ? ' · VOS' : ''}</div>
+    <div class="v">${fmtHr(a)}<small> disp.</small></div><div class="s">de ${fmtHr(b)}${b !== BUDGET ? ` (base 12h ${b > BUDGET ? '+' : '−'}${fmtHr(Math.abs(b - BUDGET))})` : ''} · reservadas ${fmtHr(u)}</div>
+    <div class="bar"><i style="width:${pct}%"></i></div></div>`;
+}
+function vDay() {
   if (!S.day) S.day = dayStart(Date.now());
-  const today = dayStart(Date.now()), ds = S.day;
-  const chips = Array.from({ length: 14 }, (_, i) => { const t = today + i * DAY; return `<button class="${t === ds ? 'on' : ''}" data-act="day" data-t="${t}"><b>${LD(t).getUTCDate()}</b><span>${i ? DOWN[dow(t)] : 'HOY'}</span></button>`; }).join('');
-  // PS5 column segments
-  let ps = '', runT = null, runS = 0;
-  const flush = (end) => { if (runT) ps += `<div class="blk ${runT === 'shared' ? 'shared' : runT === 'none' ? 'none' : 't-' + runT}" style="top:${runS}px;height:${end - runS}px">${TYPE_LBL[runT]}</div>`; };
-  for (let i = 0; i < 96; i++) { const ty = slotType(ds + i * SLOT); if (ty !== runT) { flush(i * 15); runT = ty; runS = i * 15; } }
-  flush(1440);
-  S.bookings.filter(b => b.end > ds && b.start < ds + DAY).forEach(b => {
-    const a = Math.max(b.start, ds), e = Math.min(b.end, ds + DAY), top = (a - ds) / MIN, h = (e - a) / MIN;
-    ps += `<div class="blk bk ${b.player}" data-act="booking" data-id="${b.id}" style="top:${top}px;height:${h}px"><b class="c-${b.player}">${PLAYERS[b.player].name}</b> ${hhmm(b.start)}–${hhmm(b.end)}</div>`;
-  });
-  const busyCol = p => {
-    let out = '', key = null, st = 0, info = null;
-    const fl = end => { if (key) out += `<div class="blk ${info.kind}" style="top:${st}px;height:${end - st}px">${esc(info.label)}</div>`; };
-    for (let i = 0; i < 96; i++) {
-      const x = slotInfo(p, ds + i * SLOT), k = (!x.free || x.kind === 'ovfree') ? x.kind + '|' + x.label : null;
-      if (k !== key) { fl(i * 15); key = k; st = i * 15; info = x; }
-    }
-    fl(1440); return out;
-  };
-  const gut = Array.from({ length: 24 }, (_, h) => `<i style="top:${h * 60}px">${pad(h)}</i>`).join('');
-  const now = Date.now(), nowL = ds === today ? `<div class="nowl" style="top:${(now - ds) / MIN}px"></div>` : '';
-  return `<div class="card"><h2>Turnos</h2><div class="days">${chips}</div>
-    <div class="row wrapx"><button class="btn sm" data-act="reserve">+ Reservar</button><button class="btn sm ghost" data-act="ovrides">No estoy / Estoy libre</button></div>
-    <div class="legend"><span><i style="background:linear-gradient(90deg,#22e6ff,#ff3d9a)"></i>Compartida</span><span><i style="background:rgba(34,230,255,.6)"></i>Excl. Lauty</span><span><i style="background:rgba(255,61,154,.6)"></i>Excl. Fran</span><span><i style="background:#222"></i>Nadie</span></div>
-    <div class="mut">Tocá un lugar libre de la columna PS5 para reservar, o un turno para verlo / reclamarlo.</div></div>
-    <div class="tlh"><div></div><div class="c-lauty">LAUTY OCUPADO</div><div style="color:var(--yellow)">PS5 · ${dLbl(ds)}</div><div class="c-fran">FRAN OCUPADO</div></div>
-    <div class="tl" id="tl"><div class="gut">${gut}</div><div class="col lauty">${busyCol('lauty')}${nowL}</div><div class="col" data-act="ps5col">${ps}${nowL}</div><div class="col fran">${busyCol('fran')}${nowL}</div></div>`;
+  const now = Date.now(), today = dayStart(now), ds = S.day, day = dkey(ds);
+  const chips = Array.from({ length: 14 }, (_, i) => { const t = today + i * DAY; return `<button class="${t === ds ? 'on' : ''}" data-act="day" data-t="${t}"><b>${LD(t).getUTCDate()}</b><span>${i ? DOWS[dow(t)] : 'HOY'}</span></button>`; }).join('');
+  const pendN = pendingForMe().length, bm = bmap();
+  let grid = '';
+  for (let i = 0; i < NB; i++) {
+    const b = bm.get(bid(day, i)), st = bStart(day, i), isNow = now >= st && now < st + BH, key = bid(day, i);
+    const sel = S.swap.give.includes(key) || S.swap.get.includes(key) ? ' sel' : '';
+    let cls, txt;
+    if (!b) { const ok = reservable(day, i, now); cls = `cell free${ok ? ' go' : ' past'}`; txt = ok ? 'Libre · tocá para reservar' : 'Libre'; }
+    else { const s = blockState(b, now); cls = `cell own ${b.player} ${s.k}${s.k === 'live' ? ' live' : ''}${st + BH <= now ? ' past' : ''}`; txt = `${chip(b.player)}<span>${s.label}</span>`; }
+    grid += `<div class="gr"><div class="tm">${idxLbl(i)}</div><div class="${cls}${sel}" data-act="cell" data-i="${i}">${isNow ? '<span class="nowtag">AHORA</span>' : ''}${txt}</div></div>`;
+  }
+  const sw = S.swap.give.length + S.swap.get.length;
+  return `<div class="cdl" id="cd">${cdHTML()}</div>${chronoCard()}
+  <div class="card"><h2>${dLong(ds)}</h2><div class="days">${chips}</div>
+    <div class="bals">${balCard('lauty', day)}${balCard('fran', day)}</div>${statsHTML(now)}
+    ${pendN ? `<div style="margin-top:10px"><button class="btn sm full" data-act="tab" data-k="trades">📨 ${pendN} tradeo${pendN > 1 ? 's' : ''} por responder</button></div>` : ''}</div>
+  <div class="card"><div class="row sp" style="margin-bottom:8px"><h2 style="margin:0">Grilla del día</h2><button class="btn sm ghost" data-act="range">Reservar varios</button></div>
+    <div class="grid" id="grid">${grid}</div>
+    <div class="legend"><span><i style="background:rgba(255,255,255,.1)"></i>Libre</span><span><i style="background:var(--cyan)"></i>Lauty</span><span><i style="background:var(--pink)"></i>Fran</span><span>Reservado → En curso → Jugado</span></div></div>
+  ${sw ? `<div class="pill" data-act="tab" data-k="trades">🔁 Intercambio en armado: das ${S.swap.give.length} · pedís ${S.swap.get.length} → ir</div>` : ''}`;
 }
 
-function vTradeo() {
-  const me = S.me, ot = other(me);
-  const tr = S.trades.slice().sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
-  return `<div class="card"><h2>Nuevo tradeo</h2>
-    <div class="seg"><button class="${S.trKind === 'give' ? 'on' : ''}" data-act="trKind" data-k="give">Regalar</button><button class="${S.trKind === 'ask' ? 'on' : ''}" data-act="trKind" data-k="ask">Pedir</button></div>
-    <div class="mut" style="margin-top:6px">${S.trKind === 'give' ? `Le regalás horas a ${PLAYERS[ot].name}.` : `Le pedís horas a ${PLAYERS[ot].name}.`} Queda pendiente hasta que acepte.</div>
-    <label>Horas</label><input id="tr-h" type="number" inputmode="decimal" min="0.25" step="0.25" value="1">
-    <label>Motivo</label><input id="tr-n" type="text" maxlength="120" placeholder="Ej: me dejó jugar el sábado">
-    <button class="btn full" style="margin-top:12px" data-act="trSend">Enviar</button></div>
-    <div class="card"><h2>Tradeos</h2>${tr.length ? tr.map(t => tradeRow(t, true)).join('') : '<div class="mut">Todavía no hay tradeos.</div>'}</div>`;
+/* ---- Tradeos ---- */
+const pendingForMe = () => S.trades.filter(t => t.status === 'pending' && t.createdBy !== S.me && (t.from === S.me || t.to === S.me));
+function tradeText(t) {
+  const c = t.createdBy, o = other(c);
+  if (t.type === 'swap') return `${chip(c)} ofrece <b>${rangesText(t.give)}</b> por <b>${rangesText(t.get)}</b> de ${chip(o)}`;
+  const giver = t.from, rec = t.to, dl = dLbl(dayTs(t.day));
+  const verb = t.type === 'gift' ? 'regala' : 'presta';
+  const base = c === giver ? `${chip(giver)} le ${verb} <b>${fmtHr(t.hours)}</b> a ${chip(rec)} del saldo del <b>${dl}</b>`
+    : `${chip(rec)} le pide <b>${fmtHr(t.hours)}</b> a ${chip(giver)} del saldo del <b>${dl}</b>`;
+  return base + (t.type === 'loan' ? `, a devolver el <b>${dLbl(dayTs(t.repayDay))}</b>` : '');
 }
-
-function vHist() {
-  const me = S.me, ses = S.sessions.filter(s => S.filter === 'all' || s.player === S.filter).sort((a, b) => b.start - a.start);
-  const d0 = dkey(Date.now());
-  return `<div class="card"><h2>Carga manual</h2><div class="mut">Sesión que te olvidaste de cronometrar (a tu nombre).</div>
-    <label>Día</label><input type="date" id="m-d" value="${d0}" data-est="m">
-    <div class="row"><div style="flex:1"><label>Desde</label><input type="time" id="m-a" step="900" value="18:00" data-est="m"></div><div style="flex:1"><label>Hasta</label><input type="time" id="m-b" step="900" value="19:00" data-est="m"></div></div>
-    <div class="est" id="est-m"></div><button class="btn full" style="margin-top:10px" data-act="manual">Guardar sesión</button></div>
-  <div class="card"><h2>Configuración</h2><label>Costo de jugar en franja exclusiva propia (el resto cuesta 100%)</label>
-    <div class="seg">${[0, 25, 50, 100].map(v => `<button class="${Math.round(factor() * 100) === v ? 'on' : ''}" data-act="factor" data-v="${v}">${v}%</button>`).join('')}</div>
-    <div class="mut" style="margin-top:6px">Las sesiones ya guardadas no se recalculan.</div></div>
-  <div class="card"><h2>Sesiones</h2><div class="seg" style="margin-bottom:6px">${[['all', 'Todas'], ['lauty', 'Lauty'], ['fran', 'Fran']].map(([k, l]) => `<button class="${S.filter === k ? 'on' : ''}" data-act="filter" data-k="${k}">${l}</button>`).join('')}</div>
-    ${ses.length ? ses.map(s => `<div class="item row sp"><div>${pchip(s.player)} <b>${dLbl(s.start)}</b> ${hhmm(s.start)}–${hhmm(s.end)}${s.manual ? '<span class="tag">manual</span>' : ''}
-      <div class="mut">${fmtH(s.minutes)} jugadas · ${fmtH(s.minutesShared)} comp. · ${fmtH(s.minutesExclusive)} excl. · costo <b>${fmtH(s.cost)}</b></div></div>
-      ${s.player === me ? `<button class="btn sm ghost" data-act="delSes" data-id="${s.id}">Borrar</button>` : ''}</div>`).join('') : '<div class="mut">Sin sesiones todavía.</div>'}</div>
-  <div class="card"><details><summary>Depósitos diarios</summary>${depositsHTML()}</details></div>
+function tradeRow(t) {
+  const mine = t.createdBy === S.me, st = { pending: 'pendiente', accepted: 'aceptado', rejected: 'rechazado', cancelled: 'cancelado' }[t.status];
+  const lbl = { swap: 'Intercambio', gift: 'Regalo', loan: 'Préstamo' }[t.type];
+  return `<div class="item"><div><span class="tag" style="margin:0 6px 0 0">${lbl}</span>${tradeText(t)} <span class="tag">${st}</span></div>
+    ${t.note ? `<div class="mut">“${esc(t.note)}”</div>` : ''}
+    ${t.status === 'pending' ? (mine ? `<button class="btn sm ghost" style="margin-top:6px" data-act="tNo" data-id="${t.id}" data-s="cancelled">Cancelar</button>`
+      : `<div class="row" style="margin-top:6px"><button class="btn sm gr" data-act="tOk" data-id="${t.id}">Aceptar</button><button class="btn sm ghost" data-act="tNo" data-id="${t.id}" data-s="rejected">Rechazar</button></div>`) : ''}</div>`;
+}
+function vTrades() {
+  const me = S.me, ot = other(me), now = Date.now(), today = dayStart(now);
+  const dayOpts = Array.from({ length: 14 }, (_, i) => { const t = today + i * DAY; return `<option value="${dkey(t)}" ${dkey(t) === dkey(S.day || today) ? 'selected' : ''}>${dLong(t)}</option>`; }).join('');
+  const repayOpts = Array.from({ length: 14 }, (_, i) => { const t = today + (i + 1) * DAY; return `<option value="${dkey(t)}">${dLong(t)}</option>`; }).join('');
+  const hrsOpts = Array.from({ length: 24 }, (_, i) => `<option value="${(i + 1) / 2}" ${i === 3 ? 'selected' : ''}>${fmtHr((i + 1) / 2)}</option>`).join('');
+  const bm = bmap();
+  const gv = S.swap.give.filter(k => bm.get(k)?.player === me), gt = S.swap.get.filter(k => bm.get(k)?.player === ot);
+  const pend = pendingForMe(), tr = S.trades.slice().sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+  const debts = S.trades.filter(t => t.status === 'accepted' && t.type === 'loan' && dayTs(t.repayDay) + DAY > now);
+  return `<div class="card"><h2>Bandeja · por responder ${pend.length ? `(${pend.length})` : ''}</h2>${pend.length ? pend.map(tradeRow).join('') : '<div class="mut">Nada pendiente 👌</div>'}</div>
+  ${debts.length ? `<div class="card"><h2>Deudas de horas</h2>${debts.map(t => `<div class="item">${chip(t.to)} le debe <b>${fmtHr(t.hours)}</b> a ${chip(t.from)} el <b>${dLbl(dayTs(t.repayDay))}</b></div>`).join('')}</div>` : ''}
+  <div class="card"><h2>Intercambio de bloques</h2>
+    <div class="mut">Tocá un bloque reservado tuyo (ofrecer) y uno de ${PLAYERS[ot].name} (pedir) en la grilla. Tienen que ser la misma cantidad.</div>
+    <div style="margin-top:8px">Das: <b>${gv.length ? rangesText(gv) : '—'}</b> (${gv.length / 2}h)<br>Pedís: <b>${gt.length ? rangesText(gt) : '—'}</b> (${gt.length / 2}h)</div>
+    <label>Motivo (opcional)</label><input id="sw-n" maxlength="120" placeholder="Ej: quiero jugar a la noche">
+    <div class="row" style="margin-top:10px"><button class="btn grow" data-act="swSend" ${gv.length && gv.length === gt.length ? '' : 'disabled'}>Proponer</button><button class="btn ghost" data-act="swClear">Limpiar</button></div></div>
+  <div class="card"><h2>Transferir saldo</h2>
+    <div class="seg"><button class="${S.trKind === 'gift' ? 'on' : ''}" data-act="trKind" data-k="gift">Regalo</button><button class="${S.trKind === 'loan' ? 'on' : ''}" data-act="trKind" data-k="loan">Préstamo</button></div>
+    <div class="seg" style="margin-top:6px"><button class="${S.trDir === 'give' ? 'on' : ''}" data-act="trDir" data-k="give">Doy horas</button><button class="${S.trDir === 'ask' ? 'on' : ''}" data-act="trDir" data-k="ask">Pido horas</button></div>
+    <div class="mut" style="margin-top:6px">${S.trKind === 'gift' ? 'Se mueve saldo de ese día de uno al otro (ej. 10h y 14h).' : 'Se mueve saldo hoy y el otro lo devuelve del presupuesto de otro día.'}</div>
+    <label>Día del saldo</label><select id="tr-d">${dayOpts}</select>
+    <label>Horas</label><select id="tr-h">${hrsOpts}</select>
+    ${S.trKind === 'loan' ? `<label>Día de devolución</label><select id="tr-r">${repayOpts}</select>` : ''}
+    <label>Motivo (opcional)</label><input id="tr-n" maxlength="120" placeholder="Ej: hoy no juego tanto">
+    <button class="btn full" style="margin-top:12px" data-act="trSend">Enviar propuesta</button></div>
+  <div class="card"><h2>Historial de tradeos</h2>${tr.length ? tr.map(tradeRow).join('') : '<div class="mut">Todavía no hay tradeos.</div>'}</div>
   <div class="card"><button class="btn ghost full" data-act="logout">Cerrar sesión</button></div>`;
-}
-function depositsHTML() {
-  const now = Date.now(); if (now < LAUNCH) return '<div class="mut">Empiezan el 19/11.</div>';
-  let out = ''; for (let ds = dayStart(now); ds >= LAUNCH; ds -= DAY) out += `<div class="item row sp"><span>${dLbl(ds)}</span><span>+${fmtH(sharedMinutes(ds) / 2)} c/u</span></div>`;
-  return out;
 }
 
 function renderShell() {
-  const me = PLAYERS[S.me], b = balances();
-  const nPend = S.trades.filter(t => t.status === 'pending' && t.createdBy !== S.me).length + S.claims.filter(c => c.status === 'pending' && c.owner === S.me && S.bookings.some(x => x.id === c.bookingId)).length;
-  const body = { home: vHome, turnos: vTurnos, tradeo: vTradeo, hist: vHist }[S.tab]();
-  $('#app').innerHTML = `${DEMO ? '<div class="demo">MODO DEMO · SIN FIREBASE</div>' : ''}<div class="top"><div class="wrap"><div class="logo">ALCANCÍA DE HORAS<small>GTA 6</small></div><span class="chip ${S.me}" style="font-size:16px">${me.name}</span></div></div><div class="wrap">${body}</div>`;
+  const body = S.tab === 'day' ? vDay() : vTrades(), n = pendingForMe().length;
+  $('#app').innerHTML = `${DEMO ? '<div class="demo">MODO DEMO · SIN FIREBASE</div>' : ''}<div class="top"><div class="wrap"><div class="logo">ALCANCÍA DE HORAS<small>GTA 6</small></div><span class="chip ${S.me}" style="font-size:16px">${PLAYERS[S.me].name}</span></div></div><div class="wrap">${body}</div>`;
   const nav = $('#nav'); nav.style.display = 'flex';
-  nav.innerHTML = [['home', 'Inicio'], ['turnos', 'Turnos'], ['tradeo', 'Tradeo'], ['hist', 'Historial']].map(([k, l]) => `<button class="${S.tab === k ? 'on' : ''}" data-act="tab" data-k="${k}">${l}${k === 'home' && nPend ? `<span class="dot">${nPend}</span>` : ''}</button>`).join('');
-  if (S.tab === 'hist') updEst('m');
-  if (S.tab === 'turnos' && !S.scrolled) { S.scrolled = true; const tl = $('#tl'); if (tl) window.scrollTo(0, tl.offsetTop + (S.day === dayStart(Date.now()) ? Math.max(0, (Date.now() - S.day) / MIN - 160) : 400)); }
+  nav.innerHTML = `<button class="${S.tab === 'day' ? 'on' : ''}" data-act="tab" data-k="day">DÍA</button><button class="${S.tab === 'trades' ? 'on' : ''}" data-act="tab" data-k="trades">TRADEOS${n ? `<span class="dot">${n}</span>` : ''}</button>`;
+  if (S.tab === 'day' && !S.scrolled) {
+    S.scrolled = true; const g = $('#grid'); if (g) { const now = Date.now(), t = S.day === dayStart(now) ? Math.floor((now - S.day) / BH) : 16; window.scrollTo(0, Math.max(0, g.offsetTop + t * 45 - 140)); }
+  }
 }
 let rq = 0;
 function render() {
   cancelAnimationFrame(rq);
   rq = requestAnimationFrame(() => {
     if (!S.ready) return;
-    if ($('#modal').classList.contains('on')) { if (!S.me) closeModal(); else return; }
+    if ($('#modal').classList.contains('on')) return;
     if (!S.me) { if (!$('#dots')) { $('#app').innerHTML = vLogin(); $('#nav').style.display = 'none'; } return; }
     const y = window.scrollY; renderShell(); window.scrollTo(0, y);
   });
 }
 
-/* ===================== MODALES ===================== */
-function estimateFrom(p, d, a, b) {
-  if (!d || !a || !b) return null;
-  const s = parseDT(d, a); let e = parseDT(d, b); if (e <= s) e += DAY;
-  return { s, e, ...analyze(p, s, e) };
+/* ================= ACCIONES ================= */
+async function reserveIdx(idxs, day = dkey(S.day)) {
+  const now = Date.now(), me = S.me, bm = bmap();
+  const free = idxs.filter(i => !bm.has(bid(day, i)) && reservable(day, i, now));
+  if (!free.length) return toast('No hay bloques libres para reservar');
+  const a = avail(me, day);
+  if (free.length / 2 > a) return toast(`Te quedan ${fmtHr(a)} ese día y querés reservar ${fmtHr(free.length / 2)}`);
+  let ok = 0;
+  for (const i of free) { try { await store.createIfAbsent('blocks', bid(day, i), { day, idx: i, player: me, createdAt: now }); ok++; } catch (e) { toast(e.message); } }
+  if (ok) toast(ok === 1 ? `Reservado ${idxLbl(free[0])}–${idxLbl(free[0] + 1)}` : `${ok} bloques reservados (${fmtHr(ok / 2)})`);
 }
-function estHTML(x) {
-  if (!x) return 'Completá día y horarios';
-  return `${fmtH(x.minutes)} en total · compartida <b>${fmtH(x.minutesShared)}</b> · exclusiva propia <b>${fmtH(x.minutesExclusive)}</b> · otras <b>${fmtH(x.minutes - x.minutesShared - x.minutesExclusive)}</b><br>Costo estimado: <b>${fmtH(x.cost)}</b>${x.s < LAUNCH ? ' (antes del lanzamiento: gratis)' : ''}`;
+function cellModal(i) {
+  const day = dkey(S.day), key = bid(day, i), b = bmap().get(key), now = Date.now(), me = S.me;
+  if (!b) return;
+  const st = bStart(day, i), s = blockState(b, now), mine = b.player === me, fut = future(b, now), pm = playedMs(b, now);
+  const inSw = S.swap.give.includes(key) || S.swap.get.includes(key);
+  modal(`<h2 class="c-${b.player}">${dLong(dayTs(day))} · ${idxLbl(i)}–${idxLbl(i + 1)}</h2>
+    <div style="margin:8px 0">${chip(b.player)} ${s.label}</div>
+    <div class="row wr">
+    ${mine && pm === 0 && !s.k.match(/live|paused/) ? `<button class="btn red grow" data-act="release" data-i="${i}">Liberar bloque</button>` : ''}
+    ${fut ? `<button class="btn grow ${inSw ? 'ghost' : ''}" data-act="swToggle" data-i="${i}">${inSw ? 'Quitar del intercambio' : mine ? 'Ofrecer en intercambio' : 'Pedir en intercambio'}</button>` : ''}
+    <button class="btn ghost" data-act="close">Cerrar</button></div>`);
 }
-function updEst(k) {
-  const el = $('#est-' + k); if (!el) return;
-  const pre = k === 'm' ? 'm' : 'r';
-  el.innerHTML = estHTML(estimateFrom(S.me, val(pre + '-d'), val(pre + '-a'), val(pre + '-b')));
-}
-function reserveModal(d, a, b) {
-  modal(`<h2 style="color:var(--yellow)">Reservar PS5</h2>
-    <label>Día</label><input type="date" id="r-d" value="${d}" data-est="r">
-    <div class="row"><div style="flex:1"><label>Desde</label><input type="time" id="r-a" step="900" value="${a}" data-est="r"></div><div style="flex:1"><label>Hasta</label><input type="time" id="r-b" step="900" value="${b}" data-est="r"></div></div>
-    <div class="est" id="est-r"></div>
-    <div class="row" style="margin-top:12px"><button class="btn full" data-act="doReserve">Reservar</button><button class="btn ghost" data-act="close">Cancelar</button></div>`);
-  updEst('r');
-}
-function bookingModal(id) {
-  const b = S.bookings.find(x => x.id === id); if (!b) return;
-  const x = analyze(b.player, b.start, b.end), mine = b.player === S.me;
-  const pc = S.claims.find(c => c.bookingId === id && c.status === 'pending');
-  const pr = priority(b.start);
-  modal(`<h2 class="c-${b.player}">Turno de ${PLAYERS[b.player].name}</h2>
-    <div style="margin:8px 0"><b>${dLbl(b.start)}</b> ${hhmm(b.start)}–${hhmm(b.end)}</div><div class="est">${estHTML({ s: b.start, ...x })}</div>
-    ${!mine ? `<div class="mut" style="margin-top:8px">Prioridad esa semana: ${pr.winner ? PLAYERS[pr.winner].name : 'empate'} (jugó menos compartidas).</div>` : ''}
-    <div class="row" style="margin-top:12px">${mine ? `<button class="btn red full" data-act="cancelBk" data-id="${id}">Cancelar reserva</button>`
-      : pc ? `<div class="mut" style="flex:1">Reclamo pendiente de ${PLAYERS[pc.by].name}</div>` : `<button class="btn full" data-act="claim" data-id="${id}">Reclamar turno</button>`}
-      <button class="btn ghost" data-act="close">Cerrar</button></div>`);
-}
-function overridesModal() {
-  const ds = S.day || dayStart(Date.now()), mine = S.overrides.filter(o => o.player === S.me && o.end > ds && o.start < ds + DAY);
-  modal(`<h2 style="color:var(--yellow)">Mi disponibilidad</h2><div class="mut">Pisa tu horario normal. Solo hoy o a futuro.</div>
-    <div class="seg" style="margin-top:8px"><button class="on" id="o-t1" data-act="ovType" data-k="busy">No estoy</button><button id="o-t2" data-act="ovType" data-k="free">Estoy libre</button></div>
-    <label>Día</label><input type="date" id="o-d" value="${dkey(Math.max(ds, dayStart(Date.now())))}">
-    <div class="row"><div style="flex:1"><label>Desde</label><input type="time" id="o-a" step="900" value="18:00"></div><div style="flex:1"><label>Hasta</label><input type="time" id="o-b" step="900" value="20:00"></div></div>
-    <div class="row" style="margin-top:12px"><button class="btn full" data-act="ovSave">Guardar</button><button class="btn ghost" data-act="close">Cerrar</button></div>
-    <h3 style="margin-top:16px;font-size:16px">Mis excepciones de ${dLbl(ds)}</h3>
-    ${mine.length ? mine.map(o => `<div class="item row sp"><span>${o.type === 'busy' ? 'No estoy' : 'Estoy libre'} ${hhmm(o.start)}–${hhmm(o.end)}</span><button class="btn sm ghost" data-act="ovDel" data-id="${o.id}">Borrar</button></div>`).join('') : '<div class="mut">Ninguna.</div>'}`);
-  window.__ovType = 'busy';
+function rangeModal() {
+  const opts = (sel) => Array.from({ length: NB + 1 }, (_, i) => `<option value="${i}" ${i === sel ? 'selected' : ''}>${idxLbl(i)}${i === NB ? ' (fin)' : ''}</option>`).join('');
+  const now = Date.now(), cur = Math.min(NB - 2, Math.ceil((now - dayStart(now)) / BH));
+  const s0 = S.day === dayStart(now) ? cur : 32;
+  modal(`<h2 style="color:var(--yellow)">Reservar varios bloques</h2><div class="mut">${dLong(S.day)} · se reservan los bloques libres del rango.</div>
+    <div class="row"><div class="grow"><label>Desde</label><select id="rg-a">${opts(s0).replace(/<option value="48"[^>]*>.*?<\/option>/, '')}</select></div><div class="grow"><label>Hasta</label><select id="rg-b">${opts(Math.min(NB, s0 + 4))}</select></div></div>
+    <div class="row" style="margin-top:12px"><button class="btn grow" data-act="rangeDo">Reservar</button><button class="btn ghost" data-act="close">Cancelar</button></div>`);
 }
 
-/* ===================== ACCIONES ===================== */
 const H = {
   key(d) {
-    const k = d.k; if (k === 'c') S.pin = ''; else if (k !== 'x' && S.pin.length < 4) S.pin += k;
+    const k = d.k; if (k === 'c') S.pin = ''; else if (S.pin.length < 4) S.pin += k;
     document.querySelectorAll('#dots i').forEach((e, i) => e.classList.toggle('f', i < S.pin.length));
     if (S.pin.length === 4) {
       const h = sha256(SALT + S.pin), p = Object.values(PLAYERS).find(x => x.hash === h); S.pin = '';
-      if (p) { S.me = p.id; try { localStorage.setItem('gta6.me', p.id); } catch (e) { } S.tab = 'home'; renderShell(); }
+      if (p) { S.me = p.id; try { localStorage.setItem('gta6.me', p.id); } catch (e) { } S.tab = 'day'; S.scrolled = false; renderShell(); sweep(); }
       else { const dd = $('#dots'); dd.classList.add('shake'); if (navigator.vibrate) navigator.vibrate(200); setTimeout(() => { dd.classList.remove('shake'); document.querySelectorAll('#dots i').forEach(e => e.classList.remove('f')); }, 450); }
     }
   },
   logout() { S.me = null; try { localStorage.removeItem('gta6.me'); } catch (e) { } $('#app').innerHTML = vLogin(); $('#nav').style.display = 'none'; window.scrollTo(0, 0); },
-  tab(d) { S.tab = d.k; if (d.k === 'turnos') S.scrolled = false; renderShell(); window.scrollTo(0, 0); },
+  tab(d) { S.tab = d.k; S.scrolled = false; renderShell(); window.scrollTo(0, 0); },
   close: closeModal,
   day(d) { S.day = +d.t; S.scrolled = false; renderShell(); },
-  async start() {
-    if (S.live && S.live.player) return toast('La PS5 ya está en uso');
-    const now = Date.now(), bk = S.bookings.find(b => b.player !== S.me && b.start <= now && b.end > now);
-    if (bk && !confirm(`${PLAYERS[bk.player].name} tiene reservado ahora hasta las ${hhmm(bk.end)}. ¿Arrancar igual?`)) return;
-    await act(() => store.setMeta('live', { player: S.me, since: now }));
+  async cell(d) {
+    const i = +d.i, day = dkey(S.day), b = bmap().get(bid(day, i)), now = Date.now();
+    if (b) return cellModal(i);
+    if (!reservable(day, i, now)) return toast('Ese bloque ya no se puede reservar (pasó la tolerancia de 15 min)');
+    await reserveIdx([i]);
   },
-  async end() {
-    const l = S.live; if (!l || l.player !== S.me) return;
-    const now = Date.now(), x = analyze(S.me, l.since, now);
-    if (x.minutes >= 0.1) await act(() => store.add('sessions', { player: S.me, start: l.since, end: now, ...x, createdAt: now }));
-    await act(() => store.setMeta('live', { player: null, since: null }));
-    flash('passed', `${fmtH(x.minutes)} jugadas · costo ${fmtH(x.cost)}`);
+  range: rangeModal,
+  async rangeDo() {
+    const a = +val('rg-a'), b = +val('rg-b'); if (b <= a) return toast('El rango es inválido');
+    closeModal(); await reserveIdx(Array.from({ length: b - a }, (_, k) => a + k));
   },
-  reserve() { const d = dkey(S.day || Date.now()), n = Math.ceil(Math.max(Date.now(), S.day || 0) / SLOT) * SLOT; reserveModal(d, hhmm(n), hhmm(n + 60 * MIN)); },
-  ps5col(d, el, e) {
-    if (e.target.closest('[data-act="booking"]')) return;
-    const r = el.getBoundingClientRect(), m = Math.floor((e.clientY - r.top) / 15) * 15, t = S.day + m * MIN;
-    reserveModal(dkey(S.day), hhmm(t), hhmm(t + 60 * MIN));
+  async release(d) { const day = dkey(S.day); closeModal(); await act(() => store.batch([{ op: 'del', col: 'blocks', id: bid(day, +d.i) }]), 'Bloque liberado, saldo devuelto'); },
+  swToggle(d) {
+    const key = bid(dkey(S.day), +d.i), b = bmap().get(key); if (!b) return;
+    const arr = b.player === S.me ? S.swap.give : S.swap.get, i = arr.indexOf(key);
+    i < 0 ? arr.push(key) : arr.splice(i, 1); closeModal(); toast(`Intercambio: das ${S.swap.give.length} · pedís ${S.swap.get.length}`);
   },
-  booking(d) { bookingModal(d.id); },
-  async doReserve() {
-    const x = estimateFrom(S.me, val('r-d'), val('r-a'), val('r-b')); if (!x) return toast('Completá los datos');
-    if (x.e - x.s > DAY) return toast('Máximo 24 hs');
-    if (x.e <= Date.now()) return toast('Ese horario ya pasó');
-    if (x.s < floor15(Date.now())) return toast('El turno no puede empezar en el pasado');
-    const c = S.bookings.find(b => b.start < x.e && b.end > x.s);
-    if (c) return toast(`Se superpone con el turno de ${PLAYERS[c.player].name} (${hhmm(c.start)}–${hhmm(c.end)})`);
-    closeModal();
-    if (await act(() => store.add('bookings', { player: S.me, start: x.s, end: x.e, createdAt: Date.now() }))) flash('passed', `Turno reservado · costo estimado ${fmtH(x.cost)}`);
+  swClear() { S.swap = { give: [], get: [] }; renderShell(); },
+  async swSend() {
+    const me = S.me, bm = bmap(), now = Date.now();
+    const give = S.swap.give.filter(k => bm.get(k)?.player === me && future(bm.get(k), now)), get = S.swap.get.filter(k => bm.get(k)?.player === other(me) && future(bm.get(k), now));
+    if (!give.length || give.length !== get.length) return toast('Tienen que ser la misma cantidad de bloques');
+    const t = { type: 'swap', from: me, to: other(me), createdBy: me, status: 'pending', give, get, note: val('sw-n').trim(), createdAt: now };
+    if (await act(() => store.batch([{ op: 'set', col: 'trades', id: store.newId(), data: t }]), 'Propuesta enviada')) { S.swap = { give: [], get: [] }; }
   },
-  async cancelBk(d) { closeModal(); if (await act(() => store.del('bookings', d.id))) flash('wasted', 'Turno cancelado'); },
-  async claim(d) {
-    const b = S.bookings.find(x => x.id === d.id); if (!b || b.player === S.me) return;
-    if (S.claims.some(c => c.bookingId === d.id && c.status === 'pending')) return toast('Ya hay un reclamo pendiente');
-    closeModal(); await act(() => store.add('claims', { bookingId: d.id, by: S.me, owner: b.player, status: 'pending', createdAt: Date.now() }), 'Reclamo enviado');
-  },
-  async cede(d) {
-    const c = S.claims.find(x => x.id === d.id); if (!c) return;
-    if (!(await act(() => store.upd('bookings', c.bookingId, { player: c.by })))) return;
-    await act(() => store.upd('claims', d.id, { status: 'ceded' })); flash('wasted', 'Cediste el turno. Arreglen con un tradeo.');
-  },
-  async rejectClaim(d) { if (await act(() => store.upd('claims', d.id, { status: 'rejected' }))) flash('passed', 'Turno defendido'); },
-  ovrides: overridesModal,
-  ovType(d) { window.__ovType = d.k; $('#o-t1').classList.toggle('on', d.k === 'busy'); $('#o-t2').classList.toggle('on', d.k === 'free'); },
-  async ovSave() {
-    const d = val('o-d'), a = val('o-a'), b = val('o-b'); if (!d || !a || !b) return toast('Completá los datos');
-    const s = parseDT(d, a); let e = parseDT(d, b); if (e <= s) e += DAY;
-    if (dayStart(s) < dayStart(Date.now())) return toast('Solo hoy o a futuro');
-    closeModal(); await act(() => store.add('overrides', { player: S.me, type: window.__ovType || 'busy', start: s, end: e, createdAt: Date.now() }), 'Guardado');
-  },
-  async ovDel(d) { closeModal(); await act(() => store.del('overrides', d.id), 'Borrado'); },
   trKind(d) { S.trKind = d.k; renderShell(); },
+  trDir(d) { S.trDir = d.k; renderShell(); },
   async trSend() {
-    const h = parseFloat(val('tr-h')), note = val('tr-n').trim();
-    if (!(h > 0)) return toast('Poné una cantidad de horas'); if (!note) return toast('Poné un motivo');
-    const o = other(S.me), m = Math.round(h * 60);
-    const t = S.trKind === 'give' ? { from: S.me, to: o } : { from: o, to: S.me };
-    if (await act(() => store.add('trades', { ...t, minutes: m, note, createdBy: S.me, status: 'pending', createdAt: Date.now() }), 'Enviado')) { $('#tr-n').value = ''; }
+    const me = S.me, ot = other(me), day = val('tr-d'), hours = parseFloat(val('tr-h')), loan = S.trKind === 'loan', repay = loan ? val('tr-r') : null;
+    const from = S.trDir === 'give' ? me : ot, to = S.trDir === 'give' ? ot : me, now = Date.now();
+    if (!(hours >= .5) || hours * 2 !== Math.round(hours * 2)) return toast('Horas inválidas (múltiplos de 0.5)');
+    if (dayTs(day) + DAY <= now) return toast('Ese día ya pasó');
+    if (loan && !(repay > day)) return toast('La devolución tiene que ser un día posterior');
+    if (S.trDir === 'give' && avail(me, day) < hours) return toast(`Solo tenés ${fmtHr(avail(me, day))} libres ese día`);
+    const t = { type: S.trKind, from, to, createdBy: me, status: 'pending', day, hours, note: val('tr-n').trim(), createdAt: now }; if (loan) t.repayDay = repay;
+    await act(() => store.batch([{ op: 'set', col: 'trades', id: store.newId(), data: t }]), 'Propuesta enviada');
   },
-  async tradeOk(d) {
-    const t = S.trades.find(x => x.id === d.id); if (!t) return;
-    if (t.from === S.me && balances()[S.me].total - t.minutes < 0 && !confirm('Tu saldo quedaría en negativo. ¿Aceptar igual?')) return;
-    if (await act(() => store.upd('trades', d.id, { status: 'accepted', resolvedAt: Date.now() }))) flash('passed', 'Tradeo aceptado');
+  async tOk(d) { await acceptTrade(S.trades.find(x => x.id === d.id)); },
+  async tNo(d) {
+    const ok = await act(() => store.batch([{ op: 'upd', col: 'trades', id: d.id, data: { status: d.s, resolvedAt: Date.now() } }]));
+    if (ok) flash('wasted', d.s === 'rejected' ? 'Propuesta rechazada' : 'Propuesta cancelada');
   },
-  async tradeNo(d) { if (await act(() => store.upd('trades', d.id, { status: 'rejected', resolvedAt: Date.now() }))) flash('wasted', 'Tradeo cerrado'); },
-  filter(d) { S.filter = d.k; renderShell(); },
-  async factor(d) { await act(() => store.setMeta('config', { exclusiveFactor: +d.v }), 'Guardado'); },
-  async delSes(d) { if (!confirm('¿Borrar esta sesión? Se devuelve el costo al saldo.')) return; if (await act(() => store.del('sessions', d.id))) flash('wasted', 'Sesión borrada'); },
-  async manual() {
-    const x = estimateFrom(S.me, val('m-d'), val('m-a'), val('m-b')); if (!x) return toast('Completá los datos');
-    if (x.e > Date.now()) return toast('No podés cargar una sesión futura');
-    const { s, e, ...rest } = x;
-    if (await act(() => store.add('sessions', { player: S.me, start: s, end: e, ...rest, manual: true, createdAt: Date.now() }))) flash('passed', `Sesión cargada · costo ${fmtH(x.cost)}`);
+  /* cronómetro */
+  async cStart() {
+    const me = S.me, lv = S.live[me], ol = S.live[other(me)], now = Date.now();
+    if (ol && ol.state === 'running') return toast(`${PLAYERS[other(me)].name} está jugando ahora`);
+    if (!lv) {
+      const idx = Math.floor((now - dayStart(now)) / BH), cb = bmap().get(bid(dkey(now), idx));
+      if (cb && cb.player !== me && !confirm(`El bloque de ahora es de ${PLAYERS[cb.player].name}. ¿Iniciar igual?`)) return;
+    }
+    const data = lv ? { ...lv, state: 'running', startedAt: now } : { player: me, state: 'running', startedAt: now, accMs: 0, sessionStart: now };
+    await act(() => store.batch([{ op: 'set', col: 'live', id: me, data }]));
+  },
+  async cPause() {
+    const me = S.me, lv = S.live[me], now = Date.now(); if (!lv || lv.state !== 'running') return;
+    const ops = [{ op: 'set', col: 'live', id: me, data: { ...stripId(lv), state: 'paused', startedAt: null, accMs: (lv.accMs || 0) + now - lv.startedAt } }];
+    if (now - lv.startedAt > 1000) ops.push(playOp(me, lv.startedAt, now));
+    await act(() => store.batch(ops));
+  },
+  async cEnd() {
+    const me = S.me, lv = S.live[me], now = Date.now(); if (!lv) return;
+    let total = lv.accMs || 0; const ops = [];
+    if (lv.state === 'running') { total += now - lv.startedAt; if (now - lv.startedAt > 1000) ops.push(playOp(me, lv.startedAt, now)); }
+    ops.push({ op: 'del', col: 'live', id: me });
+    if (await act(() => store.batch(ops))) flash('passed', `Sesión terminada · ${fmtDur(total)} jugadas`);
   }
 };
+const stripId = o => { const { id, ...r } = o; return r; };
+const playOp = (p, s, e) => ({ op: 'set', col: 'plays', id: store.newId(), data: { player: p, start: s, end: e, minutes: r2((e - s) / MIN), createdAt: e } });
+
+async function acceptTrade(t) {
+  if (!t || t.status !== 'pending') return;
+  const me = S.me, now = Date.now(), bm = bmap(), ops = [{ op: 'upd', col: 'trades', id: t.id, data: { status: 'accepted', resolvedAt: now } }];
+  if (t.type === 'swap') {
+    const gb = t.give.map(k => bm.get(k)), tb = t.get.map(k => bm.get(k));
+    if (gb.some(b => !b || b.player !== t.createdBy || !future(b, now)) || tb.some(b => !b || b.player !== me || !future(b, now)))
+      return toast('El intercambio ya no es válido: cambiaron los bloques. Rechazalo.');
+    const delta = {}, add = (p, day, n) => { const k = p + '|' + day; delta[k] = (delta[k] || 0) + n; };
+    gb.forEach(b => { add(t.createdBy, b.day, -.5); add(me, b.day, .5); }); tb.forEach(b => { add(me, b.day, -.5); add(t.createdBy, b.day, .5); });
+    for (const k in delta) { const [p, day] = k.split('|'); if (used(p, day) + delta[k] > budget(p, day)) return toast(`${PLAYERS[p].name} se pasaría de su saldo el ${dLbl(dayTs(day))}`); }
+    gb.forEach(b => ops.push({ op: 'upd', col: 'blocks', id: bid(b.day, b.idx), data: { player: me } }));
+    tb.forEach(b => ops.push({ op: 'upd', col: 'blocks', id: bid(b.day, b.idx), data: { player: t.createdBy } }));
+  } else {
+    if (dayTs(t.day) + DAY <= now) return toast('Ese día ya pasó');
+    if (avail(t.from, t.day) < t.hours) return toast(`${PLAYERS[t.from].name} ya no tiene ${fmtHr(t.hours)} libres el ${dLbl(dayTs(t.day))}`);
+    if (t.type === 'loan' && avail(t.to, t.repayDay) < t.hours) return toast(`${PLAYERS[t.to].name} no tiene ${fmtHr(t.hours)} libres el ${dLbl(dayTs(t.repayDay))} para devolver`);
+  }
+  if (await act(() => store.batch(ops))) flash('passed', 'Tradeo aceptado');
+}
+
+// No-show: si pasan 15 min del inicio del bloque y el dueño no inició el cronómetro → se libera
+let sweeping = new Set();
+function sweep() {
+  if (!COLS.every(c => S.loaded[c])) return;
+  const now = Date.now(), ops = [];
+  for (const b of S.blocks) {
+    const st = bStart(b.day, b.idx), key = bid(b.day, b.idx);
+    if (now < st + TOL || sweeping.has(key)) continue;
+    const lv = S.live[b.player];
+    const kept = S.plays.some(p => p.player === b.player && p.end > st && p.start < st + TOL) || (lv && lv.sessionStart < st + TOL);
+    if (!kept) { ops.push({ op: 'del', col: 'blocks', id: key }); sweeping.add(key); if (b.player === S.me && st + BH > now) flash('wasted', `Se liberó tu bloque ${idxLbl(b.idx)}: no iniciaste el cronómetro a tiempo`); }
+  }
+  if (ops.length) store.batch(ops).then(() => ops.forEach(o => sweeping.delete(o.id)), () => ops.forEach(o => sweeping.delete(o.id)));
+}
+
 document.addEventListener('click', e => {
   const el = e.target.closest('[data-act]'); if (!el) { if (e.target.id === 'modal') closeModal(); return; }
   const fn = H[el.dataset.act]; if (fn) fn(el.dataset, el, e);
 });
-document.addEventListener('input', e => { const k = e.target.dataset && e.target.dataset.est; if (k) updEst(k); });
 
-/* ===================== LOOP / ARRANQUE ===================== */
+/* ================= LOOP / ARRANQUE ================= */
 setInterval(() => {
   const cd = document.getElementById('cd'); if (cd) cd.innerHTML = cdHTML();
-  const t = document.getElementById('timer'); if (t && S.live && S.live.since) t.textContent = fmtT(Date.now() - S.live.since);
-  if (S.me && S.live && S.live.player) { const b = balances(); document.querySelectorAll('[data-bal]').forEach(el => { el.textContent = fmtH(b[el.dataset.bal].total); }); }
+  const t = document.getElementById('timer'), lv = S.me && S.live[S.me];
+  if (t) t.textContent = fmtT(lv ? (lv.accMs || 0) + (lv.state === 'running' ? Date.now() - lv.startedAt : 0) : 0);
 }, 1000);
-setInterval(() => { if (S.me && S.tab === 'home') render(); }, 30000);
+setInterval(() => { sweep(); if (S.me) render(); }, 20000);
 
 async function boot() {
   $('#app').innerHTML = '<div class="wrap login"><div class="logo" style="text-align:center;font-size:32px">CONECTANDO…</div></div>';
   try { await store.init(); } catch (e) { $('#app').innerHTML = `<div class="wrap"><div class="card">No se pudo conectar con Firebase: ${esc(e.message)}</div></div>`; return; }
-  COLS.forEach(c => store.watch(c, v => { S[c] = v; render(); }));
-  store.watch('config', v => { S.config = v; render(); });
-  store.watch('live', v => { S.live = v; render(); });
+  COLS.forEach(c => store.watch(c, arr => {
+    if (c === 'live') S.live = Object.fromEntries(arr.map(x => [x.id, x])); else S[c] = arr;
+    S.loaded[c] = true; V++; sweep(); render();
+  }));
   try { const m = localStorage.getItem('gta6.me'); if (PLAYERS[m]) S.me = m; } catch (e) { }
   S.ready = true; S.day = dayStart(Date.now());
-  if (S.me) renderShell(); else { $('#app').innerHTML = vLogin(); }
+  if (S.me) renderShell(); else $('#app').innerHTML = vLogin();
 }
 store = DEMO ? demoStore() : fbStore();
-window.GTA = { S, mk, analyze, slotType, slotInfo, balances, sharedMinutes, sha256, priority, dayStart, LAUNCH, boot, store, H };
+window.GTA = { S, H, store, budget, used, avail, sweep, bid, dkey, dayStart, mk, sha256, blockState, realMs, reserveIdx, acceptTrade, boot };
 boot();
 })();
 </script>
