@@ -182,6 +182,15 @@ const chip = p => `<span class="chip ${p}">${PLAYERS[p]?.name || '?'}</span>`;
 const S = { me: null, tab: 'day', day: null, pin: '', ready: false, loaded: {}, blocks: [], plays: [], trades: [], live: {},
   swap: { give: [], get: [] }, trKind: 'gift', trDir: 'give', scrolled: false };
 const COLS = ['blocks', 'plays', 'trades', 'live'];
+const isP = p => p === 'lauty' || p === 'fran', isN = n => typeof n === 'number' && isFinite(n), isDay = d => typeof d === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(d);
+const OK = {
+  blocks: b => isDay(b.day) && Number.isInteger(b.idx) && b.idx >= 0 && b.idx < NB && isP(b.player),
+  plays: x => isP(x.player) && isN(x.start) && isN(x.end),
+  live: x => isP(x.id) && (x.state === 'running' || x.state === 'paused') && isN(x.sessionStart),
+  trades: t => isP(t.from) && isP(t.to) && isP(t.createdBy) && ['pending', 'accepted', 'rejected', 'cancelled'].includes(t.status) &&
+    (t.type === 'swap' ? Array.isArray(t.give) && Array.isArray(t.get) && t.give.every(k => typeof k === 'string') && t.get.every(k => typeof k === 'string')
+      : (t.type === 'gift' || t.type === 'loan') && isN(t.hours) && isDay(t.day) && (t.type === 'gift' || isDay(t.repayDay)))
+};
 
 let _bm = null, _bmV = -1, V = 0;
 const bmap = () => { if (_bmV !== V) { _bm = new Map(S.blocks.map(b => [bid(b.day, b.idx), b])); _bmV = V; } return _bm; };
@@ -410,7 +419,7 @@ function vTrades() {
 
 function renderShell() {
   const body = S.tab === 'day' ? vDay() : vTrades(), n = pendingForMe().length;
-  $('#app').innerHTML = `${DEMO ? '<div class="demo">MODO DEMO · SIN FIREBASE</div>' : ''}<div class="top"><div class="wrap"><div class="logo">ALCANCÍA DE HORAS<small>GTA 6 · v4</small></div><span class="chip ${S.me}" style="font-size:16px">${PLAYERS[S.me].name}</span></div></div><div class="wrap">${body}</div>`;
+  $('#app').innerHTML = `${DEMO ? '<div class="demo">MODO DEMO · SIN FIREBASE</div>' : ''}<div class="top"><div class="wrap"><div class="logo">ALCANCÍA DE HORAS<small>GTA 6 · v5</small></div><span class="chip ${S.me}" style="font-size:16px">${PLAYERS[S.me].name}</span></div></div><div class="wrap">${body}</div>`;
   const nav = $('#nav'); nav.style.display = 'flex';
   nav.innerHTML = `<button class="${S.tab === 'day' ? 'on' : ''}" data-act="tab" data-k="day">DÍA</button><button class="${S.tab === 'trades' ? 'on' : ''}" data-act="tab" data-k="trades">TRADEOS${n ? `<span class="dot">${n}</span>` : ''}</button>`;
   if (S.tab === 'day' && !S.scrolled) {
@@ -599,6 +608,7 @@ async function boot() {
   $('#app').innerHTML = '<div class="wrap login"><div class="logo" style="text-align:center;font-size:32px">CONECTANDO…</div></div>';
   try { await store.init(); } catch (e) { $('#app').innerHTML = `<div class="wrap"><div class="card">No se pudo conectar con Firebase: ${esc(e.message)}</div></div>`; return; }
   COLS.forEach(c => store.watch(c, arr => {
+    arr = arr.filter(OK[c]);   // ignora documentos viejos / con otro formato
     if (c === 'live') S.live = Object.fromEntries(arr.map(x => [x.id, x])); else S[c] = arr;
     S.loaded[c] = true; V++; sweep(); render();
   }));
