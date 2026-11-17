@@ -424,7 +424,7 @@ function render() {
     if (!S.ready) return;
     if ($('#modal').classList.contains('on')) return;
     if (!S.me) { if (!$('#dots')) { $('#app').innerHTML = vLogin(); $('#nav').style.display = 'none'; } return; }
-    const y = window.scrollY; renderShell(); window.scrollTo(0, y);
+    const y = window.scrollY; try { renderShell(); } catch (err) { toast('Error al dibujar: ' + err.message); console.error(err); } window.scrollTo(0, y);
   });
 }
 
@@ -471,7 +471,7 @@ const H = {
     }
   },
   logout() { S.me = null; try { localStorage.removeItem('gta6.me'); } catch (e) { } $('#app').innerHTML = vLogin(); $('#nav').style.display = 'none'; window.scrollTo(0, 0); },
-  tab(d) { S.tab = d.k; S.scrolled = false; renderShell(); window.scrollTo(0, 0); },
+  tab(d) { S.tab = d.k; S.scrolled = false; try { renderShell(); } catch (err) { S.tab = 'day'; toast('Error en Tradeos: ' + err.message); renderShell(); } window.scrollTo(0, 0); },
   close: closeModal,
   day(d) { S.day = +d.t; S.scrolled = false; renderShell(); },
   async cell(d) {
@@ -581,8 +581,11 @@ function sweep() {
 
 document.addEventListener('click', e => {
   const el = e.target.closest('[data-act]'); if (!el) { if (e.target.id === 'modal') closeModal(); return; }
-  const fn = H[el.dataset.act]; if (fn) fn(el.dataset, el, e);
+  const fn = H[el.dataset.act];
+  if (fn) { try { const r = fn(el.dataset, el, e); if (r && r.catch) r.catch(err => toast('Error: ' + err.message)); } catch (err) { toast('Error en "' + el.dataset.act + '": ' + err.message); console.error(err); } }
 });
+window.addEventListener('error', e => toast('Error: ' + e.message));
+window.addEventListener('unhandledrejection', e => toast('Error: ' + (e.reason && e.reason.message || e.reason)));
 
 /* ================= LOOP / ARRANQUE ================= */
 setInterval(() => {
